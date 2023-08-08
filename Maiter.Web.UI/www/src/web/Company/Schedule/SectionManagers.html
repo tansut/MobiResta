@@ -1,0 +1,38 @@
+﻿<section ng-if="ctrl.$Ready" class="doc-content">
+    <md-content>
+        <h2 md-headline>{{ctrl.$Entity.Name}}</h2>
+        <span md-subhead>{{ctrl.$Entity.Desc}}</span>
+    </md-content>
+</section>
+
+<section class="md-whiteframe-z1 doc-content hint" flex layout-padding layout="row">
+    <md-icon big md-svg-icon="action:face"></md-icon>
+    <div flex>
+        <span>
+            If you have seperate customer relationship services for different restaurant sections, you can use this feature.
+        </span>
+        <p>
+            If a schedule is defined for this section, a request coming from a customer is automatically redirected to this section based on the location of table. If there is no schedule, MobiResta uses customer relationship team of the restaurant.
+        </p>
+    </div>
+</section>
+
+<section ng-if="ctrl.$Ready" class="md-whiteframe-z1 doc-content">
+    <md-toolbar formheader>
+        <div class="md-toolbar-tools">
+            <span translate>Section based customer relationship service</span>
+            <span flex></span>
+        </div>
+    </md-toolbar>
+
+    <md-content>
+        <timing company="ctrl.$Entity.CompanyId" edit="ctrl.editCompanyManagerTiming"></timing>
+    </md-content>
+    <div layout-padding class="md-actions" layout="row">
+        <span flex></span>
+        <md-button ng-click="ctrl.saveManagementPlan()" class="md-primary md-raised">
+            <translate>Save Changes</translate>
+        </md-button>
+    </div>
+
+</section>

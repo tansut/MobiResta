@@ -1,0 +1,56 @@
+﻿<md-dialog flex="75">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>{{'Özellik ' + (ctrl.editingPropertyItem.Id ? 'Düzenle': 'Ekle')}}</h2>
+            <span flex></span>
+            <md-button type="button" class="md-icon-button" ng-click="ctrl.closeDialog()">
+                <md-icon md-svg-src="content:clear" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-content class="md-padding">
+        <form name="propertyItemEditor" novalidate ng-submit="propertyItemEditor.$valid && ctrl.savePropertyItem()">
+            <div layout="row" layout-sm="column">
+                <md-input-container flex>
+                    <label>İç Özellik Adı</label>
+                    <input name="propertyItemName" ng-model="ctrl.editingPropertyItem.Name" required ng-maxlength="255" />
+                    <span ng-messages="propertyItemEditor.propertyItemName.$error" role="alert" ng-if="propertyItemEditor.propertyItemName.$touched || propertyEditor.$submitted">
+                        <span ng-messages-include="src/UI/ErrorMessages.html"></span>
+                    </span>
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Kısa açıklaması</label>
+                    <input name="desc" ng-model="ctrl.editingPropertyItem.Desc" ng-maxlength="255" />
+                    <span ng-messages="propertyItemEditor.desc.$error" role="alert" ng-if="propertyItemEditor.desc.$touched || propertyEditor.$submitted">
+                        <span ng-messages-include="src/UI/ErrorMessages.html"></span>
+                    </span>
+                </md-input-container>
+            </div>
+
+            <div layout="row" layout-sm="column">
+                <md-input-container flex>
+                    <label>Fiyatı</label>
+                    <input name="price" type="number" ng-model="ctrl.editingPropertyItem.Price" required min="0" max="9999" />
+                    <span ng-messages="propertyItemEditor.price.$error" role="alert" ng-if="propertyItemEditor.price.$touched || propertyEditor.$submitted">
+                        <span ng-messages-include="src/UI/ErrorMessages.html"></span>
+                    </span>
+                </md-input-container>
+                <span flex="5"></span>
+                <md-input-container flex>
+                    <md-checkbox class="md-primary" ng-model="ctrl.editingPropertyItem.AutoSelect">
+                        Otomatik Seç
+                    </md-checkbox>
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Gösterim Sırası</label>
+                    <input type="number" ng-model="ctrl.editingPropertyItem.DisplayOrder" />
+                </md-input-container>
+            </div>
+
+            <div class="md-actions" layout="row" layout-align="space-between center">
+                <md-button class="md-raised md-primary" type="submit">Uygula</md-button>
+                <md-button type="button" ng-click="ctrl.closeDialog()">Kapat</md-button>
+            </div>
+        </form>
+    </md-content>
+</md-dialog>

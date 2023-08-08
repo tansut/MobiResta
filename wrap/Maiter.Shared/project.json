@@ -1,0 +1,32 @@
+{
+  "version": "1.0.0-*",
+  "frameworks": {
+    "net45": {
+      "wrappedProject": "../../Maiter.Shared/Maiter.Shared.csproj",
+      "bin": {
+        "assembly": "../../Maiter.Shared/obj/{configuration}/Maiter.Shared.dll",
+        "pdb": "../../Maiter.Shared/obj/{configuration}/Maiter.Shared.pdb"
+      },
+      "dependencies": {
+        "TypeLite": "1.3.0",
+        "EntityFramework": "6.1.3",
+        "Microsoft.AspNet.Identity.Core": "2.2.1",
+        "Microsoft.AspNet.Identity.EntityFramework": "2.2.1",
+        "EntityFramework.SqlServer": "1.0.0-*"
+      }
+    },
+    "net46": {
+      "wrappedProject": "../../Maiter.Shared/Maiter.Shared.csproj",
+      "bin": {
+        "assembly": "../../Maiter.Shared/obj/{configuration}/Maiter.Shared.dll",
+        "pdb": "../../Maiter.Shared/obj/{configuration}/Maiter.Shared.pdb"
+      },
+      "dependencies": {
+        "EntityFramework": "6.1.3",
+        "Microsoft.AspNet.Identity.Core": "2.2.1",
+        "Microsoft.AspNet.Identity.EntityFramework": "2.2.1",
+        "TypeLite": "1.3.0"
+      }
+    }
+  }
+}

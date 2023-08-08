@@ -1,0 +1,17 @@
+﻿<ion-view view-title="MobiResta">
+    <ion-content class="page-content" padding="true">
+        <div class="card" ng-repeat="fromService in ctrl.Sources">
+            <div class="item item-divider">{{ fromService | translate }}</div>
+            <ion-list>
+                <a ui-sref="app.worker.chat({ targetService: '{{fromService}}', ChatUserName: '{{messageList.Items[messageList.Items.length - 1].MessageContent.FromUserName}}', ChatUserId: '{{messageList.Items[messageList.Items.length - 1].MessageContent.FromUserId}}', fromService: '{{ ctrl.ServiceKinds[messageList.Items[messageList.Items.length - 1].MessageContent.ToService]}}' })" class="item" ng-repeat="(userId, messageList) in ctrl.Session.Worker.RoleMessages.Items[ctrl.ServiceKinds[fromService]].Items ">
+                    {{ messageList.Items[messageList.Items.length - 1].MessageType }}
+                    {{ messageList.Items[messageList.Items.length - 1].MessageContent.FromUserName }}
+                    {{ messageList.Items[messageList.Items.length - 1].MessageContent.RequestType }}
+                    <span class="badge badge-assertive">{{ messageList.Items.length }}</span>
+                </a>
+            </ion-list>
+        </div>
+    </ion-content>
+</ion-view>
+
+

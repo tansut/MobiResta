@@ -1,0 +1,50 @@
+﻿<ion-view cache-view="false">
+    <ion-nav-buttons side="right">
+        <button ui-sref="app.customer.home" class="button icon-left ion-home button-clear"></button>
+    </ion-nav-buttons>
+
+    <ion-tabs class="tabs-icon-top tabs-positive">
+        <ion-tab ng-repeat="item in ctrl.Items" title="{{item.Title}}" icon-on="ion-ios-circle-filled" icon-off="ion-ios-circle-outline">
+            <ion-view view-title="{{item.Title}}">
+                <ion-content padding="false">
+                    <div class="page-slider-container" ng-if="item.Images.length">
+                        <ion-slide-box show-pager="{{ item.Images.length > 1 }}"  auto-play="true" class="page-slider" delegate-handle="image-viewer">
+                            <ion-slide ng-repeat="slide in item.Images track by slide.Id">
+                                <div ng-style="{'background-image': 'url(' + slide.Url + '?height=284)'}" class="slider-image row row-bottom slider-title-container">
+                                    <div class="col">
+                                        <h3 class="">{{slide.Title}}</h3>
+                                        <h4 class="">{{slide.Desc}}</h4>
+                                    </div>
+
+                                </div>
+                            </ion-slide>
+                        </ion-slide-box>
+
+
+
+                    </div>
+                    <div class="wrap-list" ng-if="item.Videos.length">
+                        <div class="item  item-divider">Watch Videos</div>
+                        <a class="item item-thumbnail-left" ui-sref="app.videoplayer({Id: '{{ video.Id  }}'})"
+                           ng-repeat="video in item.Videos">
+                            <img ng-src="{{ctrl.GetYoutubeThumbnail(video.Url) }}">
+                            <h2>{{ video.Title }}</h2>
+                            <p>{{ video.Desc }}</p>
+                        </a>
+                    </div>
+
+                    <div class="user-content" ng-bind-html="item.contentString">
+
+                    </div>
+                </ion-content>
+            </ion-view>
+
+        </ion-tab>
+
+    </ion-tabs>
+</ion-view>
+
+
+
+
+

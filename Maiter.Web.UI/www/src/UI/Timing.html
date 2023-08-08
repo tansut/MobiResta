@@ -1,0 +1,37 @@
+﻿<md-content>
+    <md-tabs md-selected="selectedIndex" md-border-bottom md-autoselect md-dynamic-height>
+        <md-tab ng-repeat="day in ::ctrl.Days"
+                label="{{ctrl.DayNames[day]}}">
+            <md-tab-body>
+                <div class="md-padding" style="text-align:center" ng-if="!ctrl.edit[day].Users.length">
+                    <p>{{ctrl.DayNames[day]}} günü için herhangi bir iş planlaması görünmüyor. Bu durumda en yakın güne ait iş planları kullanılır.</p>
+                    <md-button class="md-primary" ng-click="ctrl.newTimingForDay(day)">
+                        <span>Yeni iş planı oluştur</span>
+                    </md-button>
+                </div>
+                <md-list ng-if="ctrl.edit[day].Users.length">
+                    <div ng-repeat="user in ctrl.edit[day].Users">
+                        <md-list-item ng-click="ctrl.editUser(user, day)" class="md-3-line">
+                            <div class="md-list-item-text">
+                                <h3>{{ user.Start | date:'HH:mm' }} - {{ user.Finish | date:'HH:mm' }}</h3>
+                                <h4>
+                                    <span ng-repeat="wl in user.Workloads">
+                                        {{wl.Display}} {{wl.AsBackup ? '[Yedek]': ''}} ({{wl.Workload}}%) &nbsp;
+                                    </span>
+                                </h4>
+                            </div>
+                            <md-icon class="md-secondary" ng-click="ctrl.removePlan(user, day)" md-svg-icon="content:remove_circle"></md-icon>
+                        </md-list-item>
+                        <md-divider></md-divider>
+                    </div>
+                    <div class="md-actions" layou="row">
+                        <md-button class="md-primary" ng-click="ctrl.newTimingForDay(day)">
+                            <span>Zaman Planı Ekle</span>
+                        </md-button>
+                    </div>
+                </md-list>
+
+            </md-tab-body>
+        </md-tab>
+    </md-tabs>
+</md-content>

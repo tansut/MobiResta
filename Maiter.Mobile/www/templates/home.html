@@ -1,0 +1,25 @@
+<ion-view hide-back-button="true" view-title="Hoşgeldiniz">
+    <ion-content class="home-page" padding="false">
+        <div class="home-header" style="background-image:url('img/10554_53995ca9f33e1.jpg')">
+            <div  class="tableInfo ">
+                <button ng-if="ctrl.session.active" class="button button-positive">{{ctrl.session.initData.tableName}}</button>
+                <button  class="button button-positive" ng-click="ctrl.loginOrLogOff()">{{ctrl.loginLogOffTitle}}</button>
+            </div>        
+            <div class="businessInfo">
+                <h3>{{ctrl.session.initData.business.name}}</h3>
+                <h4>{{ctrl.session.initData.business.description}}</h4>
+            </div>
+            
+
+        </div>
+        <div class="card" ng-repeat="branch in ctrl.branchList">
+            <div class="item item-divider">{{branch.title}}</div>
+            <ion-list>
+                <a ng-click="ctrl.aboutNavigate($event)" href="#/app/{{branch.type}}/request-{{request.type}}" class="item item-icon-left"
+                ng-repeat="request in branch.availableRequests">
+                    <i class="icon {{ request.meta.iconClass }}"></i>{{request.meta.title}}
+                    </a>
+            </ion-list>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <link rel="stylesheet" href="./css/mobile-styles-bundle.css">
+    <script type="text/javascript" src="cordova.js"></script>
+</head>
+<body>
+    <div id="loading">
+
+        MobiResta
+
+    </div>
+
+    <ion-nav-view id="appBody"></ion-nav-view>
+    <div id="fb-root"></div>
+    <toaster-container toaster-options="
+        {
+            'closeButton': false,
+            'debug': false,
+            'position-class': 'toast-bottom-left',
+            'onclick': null,
+            'showDuration': '200',
+            'hideDuration': '500',
+            'timeOut': '2000',
+            'extendedTimeOut': '1000',
+            'showEasing': 'swing',
+            'hideEasing': 'linear',
+            'showMethod': 'fadeIn',
+            'hideMethod': 'fadeOut'
+        }
+        "></toaster-container>
+    <script type="text/javascript" src="./js/mobile-bundle-vendor.js"></script>
+    <script type="text/javascript" src="./js/mobile-bundle-app.js"></script>
+</body>
+</html> 

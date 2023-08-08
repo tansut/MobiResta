@@ -1,0 +1,59 @@
+﻿<div class="doc-content">
+    <section>
+        <md-content ng-if="ctrl.$Entity.Name !==''">
+            <h2 md-headline>{{ctrl.Title}}</h2>
+        </md-content>
+    </section>
+
+    <section class="md-whiteframe-z1 ">
+        <md-content>
+            <md-toolbar formheader>
+                <div class="md-toolbar-tools">
+                    <span>{{ctrl.fileListTitle}}</span>
+                    <span flex></span>
+                    <md-button ng-click="ctrl.selectNewFile()">
+                        <md-icon md-svg-icon="content:add_circle"></md-icon>
+                        <span> {{ctrl.selectFileTitle}}</span>
+                    </md-button>
+
+                </div>
+            </md-toolbar>
+
+            <md-list>
+                <div ng-repeat="entity in ctrl.$List">
+                    <md-list-item class="md-3-line" ng-click="ctrl.editAttachment(entity.Id)">
+
+                        <img ng-if="entity.AttachmentType == ctrl.AttachmentTypes.Image" ng-src="attach/{{entity.Id}}___{{entity.FileName}}?width=80" class="md-avatar" alt="{{entity.FileName}}" />
+                        <img ng-if="entity.AttachmentType == ctrl.AttachmentTypes.VideoLink" ng-src="{{ctrl.videoThumbnail(entity.FileName)}}" class="md-avatar" alt="{{entity.FileName}}" />
+
+
+                        <div class="md-list-item-text">
+                            <h3>{{ entity.Title || 'No title specified' }}</h3>
+                            <h4 ng-if="entity.AttachmentType == ctrl.AttachmentTypes.Image">{{ entity.FileName }}</h4>
+                            <h4 ng-if="entity.AttachmentType == ctrl.AttachmentTypes.VideoLink">
+                                <a href="{{ entity.FileName }}" target="_blank">Click to watch</a>
+
+                            </h4>
+                            <p ng-if="entity.AttachmentType == ctrl.AttachmentTypes.Image"><a target="_blank" href="attach/{{entity.Id}}___{{entity.FileName}}">Click to download</a></p>
+                        </div>
+
+                        <md-icon class="md-secondary" ng-click="ctrl.showEntityActions($event, entity)" md-svg-icon="action:view_headline"></md-icon>
+
+
+
+                    </md-list-item>
+                    <md-divider ng-if="$index != ctrl.$List.length-1"></md-divider>
+                </div>
+
+            </md-list>
+            <div class="md-actions" layout="row" layout-align="end center">
+                <md-button type="button" ng-click="ctrl.historyBack()">Geri Dön</md-button>
+            </div>
+        </md-content>
+
+    </section>
+
+
+</div>
+
+

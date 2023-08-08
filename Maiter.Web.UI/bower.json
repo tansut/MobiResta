@@ -1,0 +1,44 @@
+{
+  "name": "Maiter demo",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "tmp",
+    "gulpfile.js",
+    "package.json"
+  ],
+  "dependencies": {
+    "angularjs": "~1.4.4",
+    "angular-animate": "~1.4.1",
+    "angular-ui-router": "~0.2.15",
+    "angular-aria": "~1.4.1",
+    "angular-sanitize": "~1.4.1",
+    "angular-material": "master",
+    "sprintf": "~1.0.3",
+    "angular-local-storage": "~0.2.2",
+    "angular-loading-bar": "~0.8.0",
+    "angular-block-ui": "~0.2.0",
+    "ngCordova": "~0.1.17-alpha",
+    "angular-messages": "~1.4.3",
+    "angularjs-toaster": "~0.4.15",
+    "ionic": "~1.1.0",
+    "lodash": "~3.10.0",
+    "ng-file-upload": "~5.0.9",
+    "angular-gettext": "~2.1.0",
+    "angular-carousel": "~0.3.12",
+    "ngmap": "~1.10.0",
+    "textAngular": "~1.4.3",
+    "bootstrap-css-only": "~3.3.5",
+    "font-awesome": "~4.4.0"
+  },
+  "resolutions": {
+    "angular-ui-router": "~0.2.15",
+    "angular-animate": "~1.4.1",
+    "angular": "1.4.4",
+    "angular-sanitize": "~1.4.1"
+  }
+}

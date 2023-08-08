@@ -1,0 +1,45 @@
+﻿<md-dialog flex="66">
+    <form name="selectTablesDlg" novalidate ng-submit="selectTablesDlg.$valid && ctrl.saveDialog()">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Masa seçim kriteri</h2>
+                <span flex></span>
+                <md-button type="button" class="md-icon-button" ng-click="ctrl.CloseDialog()">
+                    <md-icon md-svg-src="content:clear" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <div layout-padding class="hint mention-bg" layout="row">
+            <md-icon big md-svg-icon="action:face"></md-icon>
+            <div flex>
+                <p>Lütfen kriterini belirtin. Örneğin; </p>
+                <ul>
+                    <li><strong>*</strong>: <span>(Yıldız) bu bölümdeki tüm masaları</span></li>
+                    <li><strong>1,2,4,6,7</strong>: <span>tanımı ile 1,2,4,6 ve 7 nolu masaları</span></li>
+                    <li><strong>1-9,12,16</strong>: <span>tanımı 1 ila 9 arasındaki tüm masalar, 12 ve 16 nolu masaları</span></li>
+                    <li><strong>[Giriş Masaları]</strong>: <span>tanımı masa grubu <strong>Giriş Masaları</strong> olan masaları</span></li>                    
+                </ul>
+                <p> seçebilirsiniz.</p>
+            </div>
+        </div>         
+        <md-dialog-content>
+            <div layout="row" layout-sm="column">
+                <md-input-container flex>
+                    <label>Masa seçim kriteri</label>
+                    <input ng-model="ctrl.editTableResponsibility.ResourceData.Expression" required />
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Bir isim verin ör: Yan masalar</label>
+                    <input ng-model="ctrl.editTableResponsibility.ResourceData.Title" required />                    
+                </md-input-container>
+            </div>
+   
+        </md-dialog-content>
+
+        <div class="md-actions" layout="row">
+            <md-button class="md-primary" type="submit">Save</md-button>
+            <span flex></span>
+            <md-button type="button" ng-click="ctrl.CloseDialog()">Cancel</md-button>
+        </div>
+    </form>
+</md-dialog>

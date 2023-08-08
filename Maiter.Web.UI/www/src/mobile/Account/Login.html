@@ -1,0 +1,34 @@
+﻿<ion-view cache-view="false" hide-back-button="true" view-title="{{ctrl.$state.current.data.title | translate}}">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+    </ion-nav-buttons>
+
+    <ion-content>
+        <div ng-if="ctrl.Auth.isAuthenticated">
+            <button translate class="button" ng-click="ctrl.logOff()">Logoff</button>
+        </div>
+
+        <form ng-if="!ctrl.Auth.isAuthenticated" name="loginForm" ng-submit="loginForm.$valid && ctrl.login()" novalidate>
+            <div class="list">
+                <label class="item item-input item-stacked-label">
+                    <span translate="" class="input-label">E-Mail</span>
+                    <input type="email" placeholder="{{'someone@somewhere.com'|translate }}" ng-model="ctrl.model.ID" required name="username">
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span translate class="input-label">Password</span>
+                    <input type="password" placeholder="{{'your password'|translate }}" ng-model="ctrl.model.Password" required name="password">
+                </label>
+            </div>
+            <div class="row">
+                <div class="col col-50">
+                    <button type="submit" translate class="button button-default">Login</button>
+                </div>
+                <div class="col col-50" style="text-align:right">
+                    <button type="button" class="button button-positive icon-left ion-social-facebook" ng-click="ctrl.externalLogin('Facebook')" translate>Use Facebook</button>
+                </div>
+            </div>
+        </form>
+     <!--   {{ctrl.Auth | json}}-->
+    </ion-content>
+
+</ion-view>

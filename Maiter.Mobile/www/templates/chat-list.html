@@ -1,0 +1,32 @@
+<ion-view hide-back-button="true" view-title="{{ctrl.branch.title}}">
+    <ion-nav-buttons side="primary">
+        <a class="button icon-left ion-home" href="#/app">
+      </a>
+    </ion-nav-buttons>
+    <ion-content class="page-content" padding="true">
+        <ol class="messages">
+            <li ng-repeat="message in ctrl.session.chatList.items" msgtype="{{message.type}}" ng-class="{me: message.state === 1 || message.state === 4, busy: message.state === 2 || message.state === 4}">
+                <message-view ng-model="message"></message-view>
+                <!--{{message | json}}-->
+                <div class="content">
+                    <span ng-if="!(message.state === 1 || message.state === 4)" class="from">{{message.from}}</span>                    
+                    <p>{{message.body}}
+                        <span class="when">{{message.timestamp | date: 'hh:mm'}}</span>
+                    </p>
+                    <div class="divider"></div>
+                </div>
+            </li>
+        </ol>
+    </ion-content>
+        <form novalidate name="chatListForm" ng-submit="ctrl.go(chatListForm)">
+            <ion-footer-bar class="item-input-inset bar-positivew" ng-show="ctrl.branch">
+                <label class="item-input-wrapper">
+                    <i class="icon ion-ios-search placeholder-icon"></i>
+                    <input type="text" required name="request" placeholder="{{ctrl.branch.toTitle}} talebinizi yazın" ng-model="ctrl.request.text">
+                </label>
+                <button type="submit" class="button button-clear icon icon-right ion-chevron-right">İlet</button>
+            </ion-footer-bar>
+        </form>
+</ion-view>
+
+

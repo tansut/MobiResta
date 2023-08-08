@@ -1,0 +1,15 @@
+﻿<div class="doc-content">
+    <section class="">
+        <md-content ui-view layout-padding>           
+            <md-card>
+                <md-card-content>
+                    <h2 class="md-title">Please confirm deletion of {{ctrl.Title}}</h2>
+                </md-card-content>
+                <div class="md-actions" layout="row" layout-align="end center">
+                    <md-button class="md-primary" ng-click="ctrl.deleteEntity()">Yes I'm sure</md-button>
+                    <md-button ng-click="ctrl.cancelDeletion()">No, cancel</md-button>
+                </div>
+            </md-card>
+        </md-content>
+    </section>
+</div>

@@ -1,0 +1,24 @@
+﻿<ion-view cache-view="false" class="chat-page" view-title="{{ 'Messaging' | translate }}">
+    <div class="bar bar-subheader">
+        <h2 class="title">{{::ctrl.ChatUserName}}</h2>
+    </div>
+    <ion-content padding="true" class="page-content chat-content">
+
+        <div class="chat">
+            <message-view me="{{ctrl.me}}" ng-repeat="message in ctrl.List.Items" message="message"></message-view>
+        </div>
+
+    </ion-content>
+    <ion-footer-bar class="bar-positivew">
+        <form novalidate name="chatListForm" ng-if="ctrl.ChatUserId" class="item-input-inset" ng-submit="chatListForm.$valid && !ctrl.$Dirty && ctrl.sendRequest()">
+            <label class="item-input-wrapper">
+                <input ng-model-options="{ updateOn: 'blur' }" type="text" required name="request" placeholder="{{ 'type your request' | translate  }}" ng-model="ctrl.UserText">
+            </label>
+            <button ng-disabled="ctrl.$Dirty" translate type="submit" class="button button-clear icon icon-right ion-chevron-right">Send</button>
+        </form>
+    </ion-footer-bar>
+
+
+</ion-view>
+
+

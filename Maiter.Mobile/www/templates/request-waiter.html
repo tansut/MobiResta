@@ -1,0 +1,15 @@
+<ion-view  view-title="{{ctrl.requestMeta.title}}">
+  <ion-content class="page-content" padding="false">
+    <form ng-submit="ctrl.go()">
+      <div class="card">
+        <div class="item item-divider">Ayrıca iletmek istediğiniz bir notunuz var mı?</div>
+        <label class="item item-input">
+          <input ng-model="ctrl.request.requestNote" type="text" placeholder="Varsa kısaca yazın">
+        </label>
+      </div>
+      <div class="padding">
+        <button type="submit" class="button button-positive icon-right ion-chevron-right">{{ctrl.requestMeta.title}}</button>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        
+        <link rel="stylesheet" href="bower_components/ionic/release/css/ionic.min.css">
+        <link rel="stylesheet" href="bower_components/angularjs-toaster/toaster.min.css">
+        <link rel="stylesheet" href="css/app.css">
+        <script type="text/javascript" src="cordova.js"></script>
+        
+        <script src="bower_components/ionic/release/js/ionic.bundle.js"></script>
+        
+        <script src="bower_components/ngCordova/dist/ng-cordova.min.js"></script>
+        <script type="text/javascript" src="bower_components/strophejs/strophe.min.js"></script>
+        <script type="text/javascript" src="bower_components/sprintf/dist/sprintf.min.js"></script>
+        <script type="text/javascript" src="bower_components/angular-messages/angular-messages.min.js"></script>
+        <script type="text/javascript" src="bower_components/angularjs-toaster/toaster.min.js"></script>
+        <!--<script type="text/javascript" src="js/reflect.js"></script>-->
+        
+        
+        <script type="text/javascript" src="js/bundle.js"></script>
+    </head>
+    <body>
+        <ion-nav-view></ion-nav-view>
+        <toaster-container toaster-options="
+            {
+                'closeButton': false,
+                'debug': false,
+                'position-class': 'toast-bottom-left',
+                'onclick': null,
+                'showDuration': '200',
+                'hideDuration': '500',
+                'timeOut': '2000',
+                'extendedTimeOut': '1000',
+                'showEasing': 'swing',
+                'hideEasing': 'linear',
+                'showMethod': 'fadeIn',
+                'hideMethod': 'fadeOut'
+            }
+        "></toaster-container>
+    </body>
+</html>

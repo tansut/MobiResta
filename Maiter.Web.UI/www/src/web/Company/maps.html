@@ -1,0 +1,9 @@
+﻿<section class="md-whiteframe-z1 doc-content">
+    <md-content layout-padding>
+        <map center="current-location" on-click="ctrl.alertLocation()" zoom="15">
+            <info-window id="mapInfoWindow" position="current-location" visible="true"  geo-callback="app.company.list">
+                <span>Buradayım</span>
+            </info-window>
+        </map>
+    </md-content>
+</section>

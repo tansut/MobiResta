@@ -1,0 +1,66 @@
+﻿<ion-view view- title="{{ctrl.$state.current.data.title  || 'MobiResta'}}">
+    <ion-content padding="false">
+        <div class="page-slider-container" ng-if="ctrl.HeaderImages.length > 0">
+            <ion-slide-box auto-play="true" show-pager="{{ ctrl.HeaderImages.length > 1 }}"  class="page-slider" delegate-handle="image-viewer">
+                <ion-slide ng-repeat="slide in ctrl.HeaderImages track by slide.Id">
+                    <div ng-style="{'background-image': 'url(' + slide.Url + '?height=284)'}" class="slider-image row row-bottom slider-title-container">
+                        <div class="col">
+                            <h3 class="">{{slide.Title}}</h3>
+                            <h4 class="">{{slide.Desc}}</h4>
+                        </div>
+
+                    </div>
+                </ion-slide>
+            </ion-slide-box>
+
+            <div class="slider-title-container single-line-only">
+                <h3>{{ctrl.HeaderText}}</h3>
+            </div>
+
+        </div>
+
+        <div class="card1" ng-repeat="group in ctrl.FoodGroups">
+            <div class="item item-divider">{{ group.Title }}</div>
+            <div class="list slider-list wrap-list food-list">
+                <a class="item " ng-class="{'item-thumbnail-left': item.Images.length }" ng-click="ctrl.aboutNavigate($event)" ui-sref="app.customer.menuitem({ Id: '{{ item.Id }}'})"
+                   ng-repeat="item in group.Items">
+                    <div class="slider-container" ng-if="item.Images.length">
+                        <ion-slide-box show-pager="false" class="list-slider" delegate-handle="image-viewer" auto-play="true" does-continue="true">
+                            <ion-slide ng-repeat="slide in item.Images track by slide.Id">
+                                <div ng-style="{'background-image': 'url(' + slide.Url + '?width=80)'}" class="list-slider-image">
+
+                                </div>
+                            </ion-slide>
+                        </ion-slide-box>
+                    </div>
+
+                    <div class="row no-padding">
+                        <div class="col no-padding">
+                            <h2>{{ item.Name }}</h2>
+                            <p>{{ item.Desc }}</p>
+                        </div>
+                        <div ng-if="item.Price > 0" class="col-top padding-left">
+                            <span money="item.Price" currency="item.Currency"></span>
+                        </div>
+                    </div>
+
+                    <div ng-repeat="itemsub in item.Items" ng-if="itemsub.DisplayInMenu" class="margin-top sub-list">
+                        <h2 ng-if="itemsub.ShowTitleToUser" class="sub-list-title">{{ itemsub.Name }}</h2>
+                        <div ng-repeat="subItem in itemsub.SubItems" class="item row sub-list-item item-borderless">
+                            <div class="col ">
+                                <h3>{{ subItem.Name }}</h3>
+                                <p>{{ subItem.Desc }}</p>
+                            </div>
+                            <div class="col-top padding-left">
+                                <span money="subItem.Price" currency="item.Currency"></span>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </a>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

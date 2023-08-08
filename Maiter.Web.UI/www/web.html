@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html ng-controller="AppController as app" ng-strict-di>
+
+<head>
+    <meta name="viewport" content="initial-scale=1" />
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="./css/web-styles-bundle.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
+    <title ng-bind="'MobiResta - ' + app.$state.current.data.title || ''">MobiResta</title>
+</head>
+
+<body>
+
+    <div layout layout-align="center center" id="loading">
+        <div class="spinner">
+            MobiResta
+        </div>
+    </div>
+
+    <div id="appBody" layout="row">
+        <md-sidenav ui-view="sidenav" class="site-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
+        </md-sidenav>
+
+        <div layout="column" tabindex="-1" role="main" flex>
+            <md-toolbar ui-view="toolbar" class="md-whiteframe-glow-z1 site-content-toolbar">
+
+            </md-toolbar>
+
+            <md-content ui-view="page" md-scroll-y flex>
+
+
+            </md-content>
+
+            <md-sidenav ng-if="app.account.principal.isAuthenticated" class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
+                <md-toolbar class="md-theme-light">
+                    <h1 class="md-toolbar-tools">Profilim</h1>
+                </md-toolbar>
+                <md-content layout-padding >
+                    <img ng-src="http://lorempixel.com/400/200" class="face" alt="profile picture" />
+                    <md-tabs md-selected="0" md-border-bottom md-autoselect md-dynamic-height>
+                        <md-tab label="Profile">
+                            <md-tab-body>
+                                <form name="form" novalidate ng-submit="form.$valid && app.changeProfileInfo();">
+                                    <md-input-container>
+                                        <label for="email">Email</label>
+                                        <input type="email" id="email" name="email" ng-model="app.profileModel.Email" ng-disabled="!app.profileEdit" md-sidenav-focus required>
+                                        <span ng-messages="form.email.$error" role="alert" ng-if="form.email.$touched || form.$submitted">
+                                            <span ng-messages-include="src/UI/ErrorMessages.html"></span>
+                                        </span>
+                                    </md-input-container>
+                                    <md-input-container>
+                                        <label for="name">Name</label>
+                                        <input type="text" id="name" name="name" ng-model="app.profileModel.Name" ng-disabled="!app.profileEdit" md-sidenav-focus required>
+                                        <span ng-messages="form.name.$error" role="alert" ng-if="form.name.$touched || form.$submitted">
+                                            <span ng-messages-include="src/UI/ErrorMessages.html"></span>
+                                        </span>
+                                    </md-input-container>
+                                    <md-input-container>
+                                        <label for="surname">Surname</label>
+                                        <input type="text" id="surname" name="surname" ng-model="app.profileModel.Surname" ng-disabled="!app.profileEdit" md-sidenav-focus required>
+                                        <span ng-messages="form.surname.$error" role="alert" ng-if="form.surname.$touched || form.$submitted">
+                                            <span ng-messages-include="src/UI/ErrorMessages.html"></span>
+                                        </span>
+                                    </md-input-container>
+                                    <md-input-container>
+                                        <label for="phone">Phone</label>
+                                        <input type="text" id="phone" name="phone" ng-model="app.profileModel.Phone" ng-disabled="!app.profileEdit" md-sidenav-focus required>
+                                        <span ng-messages="form.text.$error" role="alert" ng-if="form.number.$touched || form.$submitted">
+                                            <span ng-messages-include="src/UI/ErrorMessages.html"></span>
+                                        </span>
+                                    </md-input-container>
+                                    <md-button class="md-raised md-primary" ng-hide="!app.profileEdit" type="submit">Save</md-button>
+                                    <md-button class="md-raised md-primary" ng-hide="!app.profileEdit" type="button" ng-click="app.profileEditToggle()">Cancel</md-button>
+                                    <md-button class="md-raised md-primary" ng-hide="app.profileEdit" type="button" ng-click="app.profileEditToggle()">Edit</md-button>
+                                </form>
+                            </md-tab-body>
+                        </md-tab>
+                        <md-tab label="Account">
+                            <form name="form" novalidate ng-submit="form.$valid && app.changeProfileInfo();">
+                                <md-input-container>
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" ng-model="app.profileModel.Email" ng-disabled="!app.profileEdit" md-sidenav-focus required>
+                                    <span ng-messages="form.email.$error" role="alert" ng-if="form.email.$touched || form.$submitted">
+                                        <span ng-messages-include="src/UI/ErrorMessages.html"></span>
+                                    </span>
+                                </md-input-container>
+
+                                <md-input-container>
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" ng-model="app.profileModel.Email" ng-disabled="!app.profileEdit" md-sidenav-focus required>
+                                    <span ng-messages="form.email.$error" role="alert" ng-if="form.email.$touched || form.$submitted">
+                                        <span ng-messages-include="src/UI/ErrorMessages.html"></span>
+                                    </span>
+                                </md-input-container>
+                            </form>
+                        </md-tab>
+                    </md-tabs>
+
+
+                    <!--<md-button ng-click="app.closeSidenav('right')" class="md-primary">Close Sidenav Right</md-button>-->
+                </md-content>
+            </md-sidenav>
+        </div>
+
+    </div>
+    <script type="text/javascript" src="./js/web-bundle-vendor.js"></script>
+    <script type="text/javascript" src="./js/web-bundle-app.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=weather,visualization,panoramio"></script>
+
+</body>
+
+</html>

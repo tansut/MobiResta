@@ -1,0 +1,3 @@
+cordova plugin add cordova-plugin-globalization
+cordova plugin add com.phonegap.plugins.barcodescanner
+cordova plugin add cordova-plugin-geolocation

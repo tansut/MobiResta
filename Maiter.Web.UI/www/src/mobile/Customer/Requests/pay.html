@@ -1,0 +1,31 @@
+﻿<ion-view view-title="{{ctrl.Title }}">
+    <ion-nav-buttons side="right">
+        <button ui-sref="app.customer.home" class="button icon-left ion-home button-clear"></button>
+    </ion-nav-buttons>
+    <ion-content class="page-content" padding="false">
+        <form name="requestForm" ng-submit="requestForm.$valid && ctrl.sendRequest()" novalidate>
+            <div class="card">
+                <div translate class="item item-divider">How do you want to pay ?</div>
+                <div class="list">
+                    <div ng-repeat="(key,value) in ::ctrl.PaymentTypes | regex:'key':'^[0-9]+$'">
+                        <ion-radio ng-model="ctrl.Request.Payment" ng-value="value">{{value | translate}}</ion-radio>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div translate class="item item-divider">Any extra note ?</div>
+                <label class="item item-input">
+                    <input name="userText" ng-model="ctrl.UserText" type="text" placeholder="{{'If so please specify' | translate }}">
+                </label>
+                <span class="errorContainer" ng-messages="requestForm.userText.$error" role="alert">
+                    <span ng-messages-include="src/UI/ErrorMessages.html"></span>
+                </span>
+            </div>
+            <div class="padding">
+                <button translate type="submit" class="button button-positive icon-right ion-chevron-right">Send</button>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>

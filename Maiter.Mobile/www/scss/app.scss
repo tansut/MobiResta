@@ -1,0 +1,153 @@
+@import "css3-mixins";
+
+$bar-color: #387EF5;
+$divider-bg: #ccc;
+$invalidBorder: 1px dashed red;
+
+.page-content {
+    background-color: #F5F7FB;
+}
+
+.item-divider {
+    @include background-gradient(lighten($divider-bg, 10%), lighten($divider-bg, 15%));
+}
+
+.home-page {
+    background-color: lighten($bar-color, 35%);
+
+    .item-divider {
+        @include background-gradient(lighten($bar-color, 10%), lighten($bar-color, 15%));
+        color: #fff;
+        font-weight: normal;
+    }
+     
+    .home-header {
+        .businessInfo {
+            margin-top: 140px;
+
+            h3, h4 {
+                color: #fff;
+                font-weight: normal;
+                @include text-shadow(0px,0px, 1px,#222)
+            }
+        }
+
+        clear: both;
+    }
+}
+
+.home-header {
+    .tableInfo {
+        float: right;
+        color: #fff;
+
+        @include border-radius();
+        @include box-shadow();
+    }
+
+    span {
+        font-size: 110%;
+    }
+
+    height: 224px;
+    overflow: hidden;
+    background-color: $bar-color;
+    max-width: 100% !important;
+    padding: 15px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+
+.home-page .card {
+    box-shadow: none;
+}
+
+.messages {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+
+    .content {
+        border-radius: .75rem;
+        background: #e6e5eb;
+        color: #383641;
+        padding: .6875rem;
+        margin: 0;
+        font-size: .875rem;
+        overflow: visible;
+        clear: both;
+
+        p {
+            margin: 0px;
+            clear: both;
+
+            span.when {
+                display: block;
+                float: right;
+                margin-left: 12px;
+            }
+        }
+
+        .divider {
+            clear: both;
+        }
+
+        span.from {
+            display: block;
+            font-weight: bold;
+            font-size: 90%;
+            color: #707070;
+        }
+    }
+
+    img {
+        display: block;
+        max-width: 65%;
+        border-radius: .75rem;
+    }
+
+    li {
+        display: block;
+        clear: both;
+        max-width: 50%;
+        margin: 0 0 1rem 0;
+        padding: 0;
+    }
+
+    li[msgtype="error"] {
+        .content {
+            border: 1px rgb(255, 173, 173) solid;
+        }
+    }
+
+
+
+    li.me {
+        float: right;
+
+        .content {
+            background: #33cd5f;
+            color: #fff;
+        }
+
+        img {
+            float: right;
+        }
+    }
+}
+
+
+
+
+form.ng-dirty.ng-invalid {
+    .errorContainer.ng-active {
+        text-align: center;
+        display: block;
+
+        span.errorMessage {
+            color: rgba(215,40,40,0.7);
+        }
+    }
+}

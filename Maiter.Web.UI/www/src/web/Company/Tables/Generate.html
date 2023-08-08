@@ -1,0 +1,71 @@
+﻿<md-dialog flex="75">
+    <form name="form" novalidate ng-submit="form.$valid && ctrl.generate($event)">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Tolu Masa Oluştur - {{ctrl.$Entity.Name}}</h2>
+                <span flex></span>
+                <md-button type="button" class="md-icon-button" ng-click="ctrl.CloseDialog()">
+                    <md-icon md-svg-src="content:clear" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div layout="row" layout-sm="column">
+                <md-input-container flex>
+                    <label>Masa No Başlangıç</label>
+                    <input name="start" type="number" ng-model="ctrl.$model.Start" required />
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Masa No Bitiş</label>
+                    <input name="finish" type="number" ng-model="ctrl.$model.Finish" required />
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Hane Sayısı</label>
+                    <input ng-model="ctrl.$model.Digits" />
+                </md-input-container>
+            </div>
+            <div layout="row" layout-sm="column">
+                <md-input-container flex>
+                    <label>Ön eki</label>
+                    <input  ng-model="ctrl.$model.Prefix" />
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Son eki</label>
+                    <input ng-model="ctrl.$model.PostFix" />
+                </md-input-container>
+
+                <md-input-container flex>
+                    <label>Masa Grubu (İsteğe bağlı)</label>
+                    <input ng-model="ctrl.$model.Group" />
+                </md-input-container>
+            </div>
+            <div layout="row" layout-sm="column">
+                <md-chips flex ng-model="ctrl.$model.Tags" md-on-append="ctrl.newTag($chip)"
+                          placeholder="Etiket ekleyin"
+                          secondary-placeholder="+Etiket">
+                    <md-autocomplete md-selected-item="ctrl.selectedTagItem"
+                                     md-search-text="ctrl.searchTagText"
+                                     md-items="item in ctrl.queryTagSearch(ctrl.searchTagText)"
+                                     md-item-text="item"
+                                     md-delay="250"
+                                     placeholder="+Etiket">
+                        <span md-highlight-text="ctrl.searchTagText">{{item}}</span>
+                    </md-autocomplete>
+                    <md-chip-template>
+                        <strong>{{$chip}}</strong>
+                    </md-chip-template>
+                </md-chips>
+            </div>
+        </md-dialog-content>
+
+        <div class="md-actions" layout="row">
+            <md-button class="md-primary" type="submit">Masaları Oluştur</md-button>
+            <md-button ng-click="ctrl.generateMode='simulate'" value="simulate" class="md-primary" type="submit">Simule Et</md-button>
+            <span flex></span>
+            <md-button type="button" ng-click="ctrl.CloseDialog()">Cancel</md-button>
+        </div>
+
+    </form>
+
+
+</md-dialog>

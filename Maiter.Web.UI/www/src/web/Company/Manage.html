@@ -1,0 +1,62 @@
+﻿<section ng-if="::ctrl.$Entity.Attachments.length" class="pageImages">
+    <ul rn-carousel rn-carousel-index="carouselIndex2" rn-carousel-transition="zoom" rn-carousel-auto-slide rn-carousel-pause-on-hover rn-carousel-buffered>
+        <li ng-repeat="slide in ctrl.$Entity.Attachments track by slide.Id">
+            <div ng-style="{'background-image': 'url(/attach/' + slide.Id + '___' + slide.FileName + ')'}" class="bgimage">
+
+            </div>
+        </li>
+    </ul>
+</section>
+
+<section class="doc-content">
+    <md-content>
+        <h2 md-headline>{{ctrl.$Entity.Name}}</h2>
+        <span md-subhead>{{ctrl.$Entity.Desc}}</span>
+    </md-content>
+</section>
+
+<section class="doc-content">
+    <md-content>
+        <div style="height:250px;width:100%;text-align:center">
+            <img ng-src="barcode?code={{ (ctrl.TagDomain + ctrl.$Entity.BarcodeContent) | urlencode }}&width=200&height=200" />
+        </div>
+    </md-content>
+</section>
+<section class="doc-content">
+    <div layout="column" layout-align="center center">
+        <h3 md-headline>Mobilize Durumu {{ctrl.CompletenessPerc}} %</h3>
+        <md-progress-linear md-mode="determinate" ng-value="ctrl.CompletenessPerc"></md-progress-linear>
+    </div>
+</section>
+
+<section class="doc-content">
+    <md-content>
+        <div layout="row" id="company-actions" layout-sm="column" layout-wrap>
+            <md-card ng-repeat="item in ctrl.WorkItems" class="mention-bg" flex>
+                <md-card-content>
+                    <h2 class="md-title">{{item.Title}}</h2>
+                    <div layout="row" layout-margin>
+                        <div>
+                            <md-icon ng-class="{'color-todo': item.Status != ctrl.StatusType.Done, 'color-done': item.Status == ctrl.StatusType.Done}" big md-svg-icon="{{item.Icon}}"></md-icon>
+                        </div>
+                        <span flex>
+                            {{item.Content}}
+                        </span>
+                    </div>
+                </md-card-content>
+                <div class="md-actions" layout="row" layout-align="end center">
+                    <md-button ng-repeat="cmd in item.Commands" ng-click="ctrl.manageIt(cmd)">{{cmd.Title}}</md-button>
+                </div>
+            </md-card>
+
+
+
+
+
+        </div>
+
+
+
+    </md-content>
+
+</section>

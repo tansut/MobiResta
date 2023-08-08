@@ -1,0 +1,18 @@
+﻿<ion-view view-title="{{ctrl.$state.current.data.title  || 'MobiResta'}}">
+    <ion-content padding="false">
+        <div class="page-slider-container" ng-if="ctrl.HeaderImages.length > 0">
+            <ion-slide-box show-pager="false" auto-play="true" class="page-slider" delegate-handle="image-viewer">
+                <ion-slide ng-repeat="slide in ctrl.HeaderImages track by slide.Id">
+                    <div ng-style="{'background-image': 'url(' + slide.Url + '?height=284)'}" class="slider-image row row-bottom slider-title-container">
+                        <div class="col">
+                            <h3 class="">{{slide.Title}}</h3>
+                            <h4 class="">{{slide.Desc}}</h4>
+                        </div>
+
+                    </div>
+                </ion-slide>
+            </ion-slide-box>
+        </div>
+        <menu-list menu="ctrl.Session.Customer.InitData.Menu"></menu-list>
+    </ion-content>
+</ion-view>

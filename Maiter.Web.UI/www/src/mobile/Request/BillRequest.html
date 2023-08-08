@@ -1,0 +1,31 @@
+<ion-view  view-title="{{ctrl.requestMeta.title}}">
+<ion-content class="page-content" padding="false">
+<form name="billRequest" ng-submit="ctrl.go(billRequest)" novalidate>
+  <div class="card">
+    <div>
+      <div class="item item-divider">Nasıl ödeme yapmak istersiniz?</div>
+      <ion-checkbox name="paymentType" ng-model="ctrl.request.paymentType" ng-true-value="'cash'" ng-required="!ctrl.request.paymentType">{{ctrl.PaymentTypes.cash}}</ion-checkbox>
+      <ion-checkbox name="paymentType" ng-model="ctrl.request.paymentType" ng-true-value="'creditcard'" ng-required="!ctrl.request.paymentType">{{ctrl.PaymentTypes.creditcard}}</ion-checkbox>
+      <ion-checkbox name="paymentType" ng-model="ctrl.request.paymentType" ng-true-value="'other'" ng-required="!ctrl.request.paymentType">{{ctrl.PaymentTypes.other}}</ion-checkbox>
+    </div>
+    <span class="errorContainer" ng-messages="billRequest.paymentType.$error" role="alert">
+      <!-- Required Override Ediyorum. -->
+      <span class="inputError errorMessage" ng-message="required">Seçim Yapmalısınız.</span>
+      <span ng-messages-include="src/UI/ErrorMessages.html"></span>
+    </span>
+  </div>
+  <div class="card">
+    <div class="item item-divider">Servis görevlisine bir notunuz var mı?</div>
+    <label class="item item-input">
+      <input name="requestNote" ng-model="ctrl.request.requestNote" minlength="5" type="text" placeholder="Varsa kısaca yazın">
+    </label>
+    <span class="errorContainer" ng-messages="billRequest.requestNote.$error" role="alert">
+      <span ng-messages-include="src/UI/ErrorMessages.html"></span>
+    </span>
+  </div>
+  <div class="padding">
+    <button type="submit" class="button button-positive icon-right ion-chevron-right">{{ctrl.requestMeta.title}}</button>
+  </div>
+</form>
+</ion-content>
+</ion-view>

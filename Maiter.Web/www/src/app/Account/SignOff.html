@@ -1,0 +1,22 @@
+
+
+  <md-card ng-if="::(ctrl.service.principal.isAuthenticated)" message message>
+    <md-card-content>
+      <div layout="column" layout-align="space-around center">
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+        <div>
+          <h2>Çıkış işleminiz devam ediyor ...</h2>
+          <p>Birazdan işlem tamamlanacak ve ana sayfaya yönlendirileceksiniz.</p>
+        </div>
+      </div>
+    </md-card-content>
+  </md-card>
+  <md-card ng-if="::(!ctrl.service.principal.isAuthenticated)" message>
+    <md-card-content>
+      <h2>Sisteme giriş yapmanız gerekiyor</h2>
+      <p>Bu sayfaya bir hata sonucu gelmiş olabilirsiniz. Öncelikle giriş yapmanız gerekiyor.</p>
+      <p>Giriş yapmak için lütfen
+        <a ui-sref="account-login">tıklayın</a>
+      </p>
+    </md-card-content>
+  </md-card>

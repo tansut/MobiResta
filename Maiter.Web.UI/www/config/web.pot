@@ -1,0 +1,51 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+
+#: Company\Schedule\Schedule.html:11
+msgid "Customer Relationship Schedule"
+msgstr ""
+
+#: Account\Login.html:19
+msgid "Kullanici Girişi"
+msgstr ""
+
+#: Food\edit.html:127
+msgid "Long Description (optional)"
+msgstr ""
+
+#: Company\Schedule\SectionTables.html:38
+msgid "Remove"
+msgstr ""
+
+#: Company\Schedule\Schedule.html:53
+msgid "Restaurant Sections"
+msgstr ""
+
+#: Company\Schedule\Schedule.html:22
+#: Company\Schedule\Schedule.html:42
+#: Company\Schedule\SectionManagers.html:34
+msgid "Save Changes"
+msgstr ""
+
+#: Company\Schedule\SectionManagers.html:23
+msgid "Section based customer relationship service"
+msgstr ""
+
+#: Company\Schedule\SectionTables.html:34
+msgid "Table Selection"
+msgstr ""
+
+#: Company\Schedule\SectionTables.html:19
+msgid "Table Selection Criteria"
+msgstr ""
+
+#: Company\Schedule\Schedule.html:31
+msgid "Vale Schedule"
+msgstr ""
+
+#: Menu\Sections\List.html:65
+msgid "İlişkili Restaurantlar"
+msgstr ""

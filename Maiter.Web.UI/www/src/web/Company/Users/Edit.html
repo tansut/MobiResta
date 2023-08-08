@@ -1,0 +1,100 @@
+﻿<md-dialog flex="75">
+    <form name="form" novalidate ng-submit="form.$valid && ctrl.save()">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>{{ctrl.$Id ? ctrl.$Entity.Display: 'Ekle'}}</h2>
+                <span flex></span>
+                <md-button type="button" class="md-icon-button" ng-click="ctrl.CloseDialog()">
+                    <md-icon md-svg-src="content:clear" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div ng-if="!ctrl.$Entity.UserId">
+                <div ng-if="!ctrl.userAccount" layout-padding class="hint" layout="row">
+                    <md-icon big md-svg-icon="action:face"></md-icon>
+                    <span flex>
+                        <em ng-if="!ctrl.emailError">Lütfen unutmayın; İşletmenize çalışan olarak ekleyeceğiniz kişinin MobiResta hesabı olmalıdır.</em>
+                        <strong ng-if="ctrl.emailError">{{ctrl.emailError}}</strong>
+                    </span>
+                </div>
+
+                <div ng-if="!ctrl.userAccount" layout="row" layout-sm="column">
+                    <md-input-container flex>
+                        <label>Eklemek istediğiniz kişinin e-posta adresini giriniz</label>
+                        <input type="email" ng-model="ctrl.$Entity.EMail" required />
+                    </md-input-container>
+                </div>
+
+                <div ng-if="ctrl.userAccount">
+                    <div layout-padding class="hint" layout="row">
+                        <md-icon big md-svg-icon="action:face"></md-icon>
+                        <p flex>
+                            <strong>{{ctrl.userAccount}}</strong> e-posta adresine sahip MobiResta kullanıcısını çalışan olarak eklemek için lütfen aşağıdaki bilgileri de doldurun. Kullanıcının da talebinizi onaylaması ardından süreç tamamlanmış olacak.
+                        </p>
+                    </div>
+                    <div layout="row" layout-sm="column">
+                        <md-input-container flex>
+                            <label>Rumuz (İsteğe bağlı ör: Garson 2)</label>
+                            <input ng-model="ctrl.$Entity.Desc" />
+                        </md-input-container>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="ctrl.$Entity.UserId">
+                <div layout="row" layout-sm="column">
+                    <md-input-container flex>
+                        <label>Rumuz (İsteğe bağlı ör: Garson 2)</label>
+                        <input ng-model="ctrl.$Entity.Desc" />
+                    </md-input-container>
+                </div>
+                <div layout="column">
+                    <div>
+                        <strong>
+                            Durumu
+                        </strong>
+                    </div>
+                    <md-input-container flex>
+                        <md-list-item class="md-2-line">
+                            <div class="md-list-item-text">
+                                <h3>Kullanıcı Aktif</h3>
+                            </div>
+                            <md-switch class="md-secondary" ng-model="ctrl.$Entity.Enabled"></md-switch>
+                        </md-list-item>
+                    </md-input-container>
+                </div>
+            </div>
+            <div layout="column" ng-if="ctrl.$Entity.UserId || ctrl.userAccount">
+                <strong>
+                    Rolleri
+                </strong>
+                <md-list flex>
+
+                    <div ng-repeat="(key, value) in ctrl.roles">
+                        <md-list-item class="md-2-line">
+                            <div class="md-list-item-text">
+                                <h3>{{ value.Title }}</h3>
+
+                            </div>
+
+                            <md-switch class="md-secondary" ng-model="value.Has"></md-switch>
+
+                        </md-list-item>
+                    </div>
+                </md-list>
+                </div>
+                
+
+</md-dialog-content>
+
+        <div class="md-actions" layout="row">
+            <md-button ng-if="ctrl.$Entity.UserId || ctrl.userAccount" class="md-primary" type="submit">Save</md-button>
+            <md-button ng-if="!ctrl.$Entity.UserId && !ctrl.userAccount" class="md-primary" type="button" ng-click="ctrl.getUserAccount()">Devam Et</md-button>
+            <span flex></span>
+            <md-button type="button" ng-click="ctrl.CloseDialog()">Cancel</md-button>
+        </div>
+
+    </form>
+
+
+</md-dialog>

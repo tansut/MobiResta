@@ -1,0 +1,54 @@
+﻿
+<section ng-if="ctrl.$Ready" class="md-whiteframe-z1 doc-content">
+    <md-content>
+        <md-toolbar formheader>
+            <div class="md-toolbar-tools">
+                <span> Menüler</span>
+                <span flex></span>
+                <md-button ui-sref="app.menu.new" aria-label="Ekle">
+                    <md-icon md-svg-icon="content:add_circle"></md-icon>
+                    <span> Yeni</span>
+                </md-button>
+
+            </div>
+        </md-toolbar>
+        <md-content ng-if="!ctrl.$List.length" layout-padding >
+            <h2 md-headline>Bu bölümde henüz hiç bir tanım gözükmüyor.</h2>
+            <p md-subhead>Hemen yukarıda <md-icon md-svg-icon="content:add_circle"></md-icon> butonuna tıklayarak işe başlayabilirsiniz.</p>
+        </md-content>     
+        <md-list>
+            <div ng-repeat="entity in ctrl.$List">
+                <md-list-item class="md-2-line" ng-click="ctrl.entitySections(entity)">
+                    <div ng-if="entity.Attachments.length" hide-sm class="itemThumnails">
+                        <ul rn-carousel rn-carousel-index="carouselIndex2" rn-carousel-transition="zoom" rn-carousel-auto-slide rn-carousel-pause-on-hover rn-carousel-buffered>
+                            <li ng-repeat="slide in entity.Attachments track by slide.Id">
+                                <div ng-style="{'background-image': 'url(/attach/' + slide.Id + '___' + slide.FileName + '?width=132&height=99)'}" class="bgimage">
+
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <md-icon ng-if="!entity.Attachments.length" hide-sm average md-svg-icon="maps:restaurant_menu"></md-icon>
+                    <div class="md-list-item-text">
+                        <h3>{{ entity.Name }}, {{ entity.Desc }}</h3>
+                        <h4>
+                            <span ng-repeat="section in entity.Sections">
+                                {{section.Name}}
+                            </span>
+
+                        </h4>
+                        
+                        
+                    </div>
+                    <md-icon class="md-secondary" ng-click="ctrl.showEntityActions($event, entity)" md-svg-icon="action:view_headline"></md-icon>
+                </md-list-item>
+
+                <md-divider ng-if="$index != ctrl.$List.length-1"></md-divider>
+            </div>
+
+        </md-list>
+    </md-content>
+</section>
+
+

@@ -1,0 +1,22 @@
+﻿{
+    "version": "1.0.0-*",
+    "description": "",
+    "authors": [ "" ],
+    "tags": [ "" ],
+    "projectUrl": "",
+    "licenseUrl": "",
+
+    "dependencies": {
+        "Microsoft.AspNet.Mvc": "6.0.0-beta5"
+    },
+
+    "frameworks": {
+        "dnx451": {
+            "dependencies": {
+                "Maiter.Shared": "1.0.0-*",
+                "Maiter.Core": "1.0.0-*"
+
+            }
+        }
+    }
+}

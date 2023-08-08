@@ -1,0 +1,86 @@
+﻿<section ng-if="ctrl.$Ready" class="doc-content">
+    <md-content>
+        <h2 md-headline>{{ctrl.$Entity.Name}}</h2>
+        <span md-subhead>{{ctrl.$Entity.Desc}}</span>
+    </md-content>
+</section>
+
+<section ng-if="ctrl.$Ready" class="md-whiteframe-z1 doc-content">
+    <md-toolbar formheader>
+        <div class="md-toolbar-tools">
+            <span translate> Customer Relationship Schedule</span>
+            <span flex></span>
+        </div>
+    </md-toolbar>
+
+    <md-content>
+        <timing dirty="ctrl.$Dirty" company="ctrl.$Id" edit="ctrl.editCompanyManagerTiming">        </timing>
+    </md-content>
+    <div layout-padding class="md-actions" layout="row">
+        <span flex></span>
+        <md-button ng-if="ctrl.$Dirty" ng-click="ctrl.saveManagementPlan()" class="md-warn md-raised" >
+            <translate>Save Changes</translate>
+        </md-button>
+    </div>
+
+</section>
+
+<section ng-if="ctrl.$Ready" class="md-whiteframe-z1 doc-content">
+    <md-toolbar formheader>
+        <div class="md-toolbar-tools">
+            <span translate>Vale Schedule</span>
+            <span flex></span>
+        </div>
+    </md-toolbar>
+
+    <md-content>
+        <timing dirty="ctrl.$DirtyVale" company="ctrl.$Id" edit="ctrl.editCompanyValeTiming"></timing>
+    </md-content>
+    <div layout-padding class="md-actions" layout="row">
+        <span flex></span>
+        <md-button ng-if="ctrl.$DirtyVale" ng-click="ctrl.saveValePlan()" class="md-warn md-raised">
+            <translate>Save Changes</translate>
+        </md-button>
+    </div>
+
+</section>
+
+
+<section ng-if="ctrl.$Ready" class="md-whiteframe-z1 doc-content">
+    <md-content>
+        <md-toolbar formheader>
+            <div class="md-toolbar-tools">
+                <span translate>Restaurant Sections</span>
+                <span flex></span>
+            </div>
+        </md-toolbar>
+        <md-list>
+            <div ng-repeat="entity in ctrl.$Entity.Sections">
+                <md-list-item class="md-2-line" >
+                    <div flex layout="row" layout-padding>
+                        <div class="md-list-item-text md-padding" flex>
+                            <h3>{{ entity.Name }}</h3>
+                            <h4>{{ entity.Desc }}</h4>
+                        </div>
+                        <div layout="row" layout-align="center center">
+                            <div>
+                                <md-button class="md-primary" ui-sref="app.company.schedule.tables({sectionId: entity.Id})">                                    
+                                    <span>Waiters</span>
+                                </md-button>
+                            </div>
+                            <div>
+                                <md-button class="md-primary" ui-sref="app.company.schedule.section({sectionId: entity.Id})">
+                                    <span>Customer Relationship</span>
+                                </md-button>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </md-list-item>
+                <md-divider ng-if="$index != ctrl.$Entity.Sections.length-1"></md-divider>
+            </div>
+
+        </md-list>
+    </md-content>
+</section>

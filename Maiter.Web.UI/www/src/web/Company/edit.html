@@ -1,0 +1,160 @@
+﻿<section ng-if="ctrl.$Entity.Name" class="doc-content">
+    <md-content>
+        <h2 md-headline>{{ctrl.$Entity.Name}}</h2>
+        <span md-subhead>{{ctrl.$Entity.Desc}}</span>
+    </md-content>
+</section>
+
+<section class="md-whiteframe-z1 doc-content">
+    <md-content layout-padding>
+        <form name="form" novalidate ng-submit="form.$valid && ctrl.save()">
+            <div layout-padding class="hint mention-bg" layout="row" layout-margin>
+
+                <md-icon big md-svg-icon="action:face"></md-icon>
+
+                <span flex>
+                    Lütfen unutmayın; Restaurant temel bilgilerini sadece bir kez değiştirebilirsiniz. Kaydetmeden önce herşeyin doğru olduğunu tekrar kontrol edin.
+                </span>
+            </div>
+
+            <div layout="row" layout-sm="column" layout-padding>
+                <md-input-container flex>
+                    <label>Name</label>
+                    <input ng-model="ctrl.$Entity.Name" required />
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Short Description</label>
+                    <input ng-model="ctrl.$Entity.Desc" />
+                </md-input-container>
+
+
+
+            </div>
+            <div layout="row" layout-sm="column" layout-padding>
+                <md-autocomplete flex
+                                 md-selected-item="ctrl.cascade.countrySelected"
+                                 md-search-text-change="ctrl.countrySearchTextChange(ctrl.cascade.countrySearch)"
+                                 md-search-text="ctrl.cascade.countrySearch"
+                                 md-items="item in ctrl.queryCountry(ctrl.cascade.countrySearch)"
+                                 md-selected-item-change="ctrl.countrySelectedChange(item)"
+                                 md-item-text="item.Name"
+                                 md-min-length="0"
+                                 placeholder="Country"
+                                 md-input-name="country"
+                                 md-autoselect="false"
+                                 md-floating-label="Country">
+                    <md-item-template>
+                        <span md-highlight-text="ctrl.cascade.countrySearch" md-highlight-flags="^i">{{item.Name}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                        No matches found for "{{ctrl.cascade.countrySearch}}".
+                    </md-not-found>
+                </md-autocomplete>
+
+                <md-autocomplete flex
+                                 md-selected-item="ctrl.cascade.stateSelected"
+                                 md-search-text-change="ctrl.stateSearchTextChange(ctrl.cascade.stateSearch)"
+                                 md-search-text="ctrl.cascade.stateSearch"
+                                 md-items="item in ctrl.queryState(ctrl.cascade.stateSearch)"
+                                 md-item-text="item.Name"
+                                 md-min-length="0"
+                                 placeholder="State/City"
+                                 md-input-name="state"
+                                 md-selected-item-change="ctrl.stateSelectedChange(item)"
+                                 md-floating-label="State/City">
+                    <md-item-template>
+                        <span md-highlight-text="ctrl.cascade.stateSearch" md-highlight-flags="^i">{{item.Name}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                        No matches found for "{{ctrl.cascade.stateSearch}}".
+                    </md-not-found>
+                </md-autocomplete>
+                <md-autocomplete flex
+                                 md-selected-item="ctrl.cascade.citySelected"
+                                 md-search-text-change="ctrl.citySearchTextChange(ctrl.cascade.citySearch)"
+                                 md-search-text="ctrl.cascade.citySearch"
+                                 md-items="item in ctrl.queryCity(ctrl.cascade.citySearch)"
+                                 md-item-text="item.Name"
+                                 md-min-length="0"
+                                 placeholder="Districts"
+                                 md-input-name="city"
+                                 md-floating-label="Districts">
+                    <md-item-template>
+                        <span md-highlight-text="ctrl.cascade.citySearch" md-highlight-flags="^i">{{item.Name}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                        No matches found for "{{ctrl.cascade.citySearch}}".
+                    </md-not-found>
+                </md-autocomplete>
+            </div>
+            <div layout="row" layout-sm="column" layout-padding>
+                <md-input-container flex>
+                    <label>Adress 1</label>
+                    <input ng-model="ctrl.$Entity.Adress1" required />
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Adress 2</label>
+                    <input ng-model="ctrl.$Entity.Adress2" />
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Post Code</label>
+                    <input ng-model="ctrl.$Entity.PostCode" required />
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Location</label>
+                    <input type="text" ng-model="ctrl.position" required readonly />
+                </md-input-container>
+                <md-button type="button" ng-click="ctrl.haritaGoster()" aria-label="Select Location">
+                    <md-icon md-svg-icon="content:add_circle"></md-icon>
+                    <span>Select Location</span>
+                </md-button>
+            </div>
+            <div layout="row" layout-sm="column" layout-padding>
+                <md-select placeholder="TimeZone" ng-model="ctrl.$Entity.TimeZone">
+                    <md-option ng-repeat="zone in ctrl.TimeZones.Items" value="{{zone}}">{{zone}}</md-option>
+                </md-select>
+            </div>
+
+            <md-checkbox ng-model="ctrl.$Entity.Daylight" aria-label="Save Daylight">
+                Save Daylight
+            </md-checkbox>
+
+            <div class="md-actions" layout="row" layout-align="space-between center">
+                <md-button class="md-raised md-primary" ng-click="form.$pristine=false" type="submit">Save</md-button>
+                <md-button type="button" ng-click="ctrl.historyBack()">Return</md-button>
+            </div>
+        </form>
+
+    </md-content>
+
+</section>
+
+
+
+<section class="md-whiteframe-z1 doc-content" ng-if="ctrl.haritaDurum">
+    <md-content layout-padding>
+        <div ng-if="!ctrl.$Id">
+            <map center="current-location" on-click="ctrl.alertLocation()" zoom="15" map-type-id="SATELLITE" >
+                <info-window id="mapInfoWindow" position="current-location" visible="true" >
+                    <span>I'm here</span>
+                </info-window>
+            </map>
+        </div>
+        <div ng-if="ctrl.$Id">
+            <map center="{{ctrl.position}}" on-click="ctrl.alertLocation(this)" zoom="15"  map-type-id="SATELLITE" >
+                <info-window id="mapInfoWindow" position="{{ctrl.position}}" visible="true"  >
+                    <span>I'm here</span>
+                </info-window>
+            </map>
+        </div>
+
+    </md-content>
+</section>
+
+
+
+
+
+
+
+<!--<div ui-view></div>-->

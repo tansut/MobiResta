@@ -1,0 +1,12 @@
+﻿@{
+    Layout = null;
+
+}
+@model Maiter.Shared.ViewModels.Account.MailTemplateModels.RegisterTemplateViewModel
+<!DOCTYPE html>
+<div>
+    <span>Merhaba @Model.Name  @Model.Surname</span>
+    <span>Mobil Restorant Servislerimizden Yararlanabilmek için mail adresinizi onaylamak için.</span>
+    <br />
+    Lütfen <a href="@Model.ConfirmationLink">buraya</a> tıklayınız.
+</div>

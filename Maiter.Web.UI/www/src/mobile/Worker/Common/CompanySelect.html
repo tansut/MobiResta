@@ -1,0 +1,17 @@
+﻿<ion-view view-title="{{ctrl.$state.current.data.title || 'MobiResta'}}">
+    <ion-content padding="true">        
+        <div class="card">
+            <div class="item item-divider">Restaurant Seçimi</div>
+            <ion-list>
+                <a ng-click="ctrl.selectCompany(company)" class="item"
+                   ng-repeat="company in ctrl.WorkerInfo.Companies">
+                    {{company.CompanyName}}
+                </a>
+            </ion-list></div>
+
+            <button ng-click="ctrl.asCustomer()" class="button button-block">
+                Şu anda ben de restaurant müşterisiyim
+            </button>
+
+</ion-content>
+</ion-view>

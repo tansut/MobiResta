@@ -1,0 +1,15 @@
+{
+  "debug": {
+    "Protocol": "http",
+    "Host": "192.168.2.221",
+    "Port": "6971",
+    "App": "/api"
+  },
+
+  "production": {
+    "Protocol": "http",
+    "Host": "www.mobiresta.com",
+    "Port": "80",
+    "App": "/api"
+  }
+}

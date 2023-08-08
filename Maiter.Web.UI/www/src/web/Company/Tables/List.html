@@ -1,0 +1,81 @@
+﻿<section ng-if="ctrl.$Entity.Attachments.length" class="pageImages">
+    <ul rn-carousel rn-carousel-index="carouselIndex2" rn-carousel-transition="zoom" rn-carousel-auto-slide rn-carousel-pause-on-hover rn-carousel-buffered>
+        <li ng-repeat="slide in ctrl.$Entity.Attachments track by slide.Id">
+            <div ng-style="{'background-image': 'url(/attach/' + slide.Id + '___' + slide.FileName + ')'}" class="bgimage">
+
+            </div>
+        </li>
+    </ul>
+</section>
+
+<section ng-if="ctrl.$Ready" class="doc-content">
+    <md-content>
+        <h2 md-headline>{{ctrl.company.Name}}</h2>
+        <span md-subhead>{{ctrl.$Entity.Name}}</span>
+    </md-content>
+</section>
+
+
+<section ng-show="ctrl.$Ready" class="md-whiteframe-z1 doc-content">
+    <md-content>
+        <md-toolbar formheader>
+            <div class="md-toolbar-tools">
+                <span> {{ctrl.$Entity.Name}} Masaları</span>
+                <span flex></span>
+                <md-button ui-sref="app.company.tables.new" aria-label="Ekle">
+                    <md-icon md-svg-icon="content:add_circle"></md-icon>
+                    <span> Yeni</span>
+                </md-button>
+                <md-button ui-sref="app.company.tables.generate" aria-label="Toplu Oluştur">
+                    <md-icon md-svg-icon="content:content_copy"></md-icon>
+                    <span> Toplu Oluştur</span>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <div ng-if="ctrl.mention == 'tables'" layout-padding class="hint mention-bg" layout="row">
+            <md-icon big md-svg-icon="action:face"></md-icon>
+            <span flex>                
+                Lütfen masaları yönetmek için önce aşağıdan ilgili restaurant bölümünü seçiniz. 
+            </span>
+        </div>
+        <md-content ng-if="!ctrl.$Entity.Tables" layout-padding >
+            <h2 md-headline>Bu bölümde henüz hiç bir tanım gözükmüyor.</h2>
+            <p md-subhead>Hemen yukarıda <md-icon md-svg-icon="content:add_circle"></md-icon> butonuna tıklayarak işe başlayabilirsiniz.</p>
+        </md-content>
+        <md-list>
+            <div ng-repeat="entity in ctrl.$Entity.Tables">
+                <md-list-item ng-class="{'simulated': entity.Simulated }" class="md-3-line" ng-click="ctrl.editEntity($event, entity)">
+                    <md-icon ng-if="!entity.Attachments.length" hide-sm list md-svg-icon="action:view_list"></md-icon>
+                    <div ng-if="entity.Attachments.length" hide-sm class="itemThumnails">
+                        <ul rn-carousel rn-carousel-index="carouselIndex2" rn-carousel-transition="zoom" rn-carousel-auto-slide rn-carousel-pause-on-hover rn-carousel-buffered>
+                            <li ng-repeat="slide in entity.Attachments track by slide.Id">
+                                <div ng-style="{'background-image': 'url(/attach/' + slide.Id + '___' + slide.FileName + '?width=132&height=99)'}" class="bgimage">
+
+                                </div>
+                            </li>
+                        </ul>
+                    </div>                      
+                    
+                    <div class="md-list-item-text" >
+                        <h3 ng-if="entity.TableGroup"> {{entity.TableGroup}} / {{ entity.Name }}</h3>
+                        <h3 ng-if="!entity.TableGroup"> {{ entity.Name }}</h3>
+                        <h4>{{ entity.Desc }}</h4>
+                        <p>Masa No: {{entity.Number}}</p>   
+                    </div>
+                    <md-icon class="md-secondary" ng-click="ctrl.showEntityActions($event, entity)" md-svg-icon="action:view_headline"></md-icon>
+                </md-list-item>
+                <div ng-if="entity.Tags.length" layout-padding layout="row" layout-margin>
+                    <span class="tag" tag="{{tag.Name}}" ng-repeat="tag in entity.Tags">
+                        {{tag.Name}}
+                    </span>
+                </div>
+                <md-divider ng-if="$index != ctrl.$Entity.Tables.length-1"></md-divider>
+            </div>
+
+        </md-list>
+    </md-content>
+</section>
+
+<div ui-view></div>
+
+

@@ -1,0 +1,10 @@
+<md-button ng-click="ctrl.newEntity()">
+    Yeni Organizsyon Olu?tur
+</md-button>
+<md-list>
+    <md-list-item ng-click="ctrl.editEntity(entity)" ng-repeat="entity in ctrl.entityList">
+        <p>{{entity.Name}}</p>
+        <button ng-click="ctrl.editEntity(entity)"></button>
+    </md-list-item>
+
+</md-list>

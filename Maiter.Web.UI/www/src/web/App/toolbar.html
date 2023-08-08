@@ -1,0 +1,39 @@
+﻿<div class="md-toolbar-tools docs-toolbar-tools" tabindex="-1">
+    <md-button class="md-icon-button" ng-click="app.openSidenav()" hide-gt-sm aria-label="Toggle Menu">
+        <md-icon md-svg-icon="editor:format_align_justify"></md-icon>
+    </md-button>
+    <div layout="row" flex class="fill-height">
+        <h2 class="md-toolbar-item md-breadcrumb md-headline">
+            <span class="md-breadcrumb-page">{{ app.$state.current.data.title || '' }}</span>
+        </h2>
+        <span flex></span>
+        <div class="md-toolbar-item docs-tools" layout="row" layout-margin>
+            <md-button ng-if="app.account.principal.isAuthenticated" ng-click="app.openSidenav('right')">
+                <md-icon md-svg-icon="action:perm_identity"></md-icon>
+                <span>Profilim</span>
+
+            </md-button>
+
+            <md-button ng-if="!app.account.principal.isAuthenticated" ui-sref="app.account.login">
+                <md-icon md-svg-icon="action:perm_identity"></md-icon>
+                <span>Giriş</span>
+            </md-button>
+
+        </div>
+        <div class="md-toolbar-item docs-tools" layout="row" layout-margin>
+            <md-menu>
+                <md-button  ng-click="app.openMenu($mdOpenMenu, $event)">
+                    {{app.Languages[app.Translate.Catalog.currentLanguage]}}
+                </md-button>
+                <md-menu-content width="1">
+                    <md-menu-item ng-repeat="(key,value) in ::app.Languages">
+                        <md-button ng-click="app.changeLanguage(key)">
+                            
+                            {{value}}
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </div>
+    </div>
+</div>

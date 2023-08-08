@@ -1,0 +1,33 @@
+﻿<md-dialog flex="75">
+    <md-dialog-content>
+        <form name="form" novalidate ng-submit="form.$valid && ctrl.save()">
+            <div layout="row" layout-sm="column" layout-padding>
+                <md-input-container flex>
+                    <label>Request Name</label>
+                    <input ng-model="ctrl.$Data.RequestName" required readonly />
+                </md-input-container>
+            </div>
+            <div layout="row" layout-sm="column" layout-padding>
+                <md-input-container flex>
+                    <label>Target Service</label>
+                    <md-select name="languageOption" placeholder="Target Service" ng-model="ctrl.$Data.TargetService">
+                        <md-option ng-value="key" ng-repeat="(key, value)  in ctrl.serviceKind()">{{value}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container flex>
+
+                    <md-switch ng-model="ctrl.$Data.Disabled">
+                        Disabled State
+                    </md-switch>
+                </md-input-container>
+            </div>
+            <div class="md-actions" layout="row" layout-align="space-between center">
+                <md-button class="md-primary" type="submit">Save</md-button>
+                <span flex></span>
+                <md-button type="button" ng-click="ctrl.CloseDialog()">Cancel</md-button>
+            </div>
+
+        </form>
+    </md-dialog-content>
+
+</md-dialog>

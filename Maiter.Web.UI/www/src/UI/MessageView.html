@@ -1,0 +1,27 @@
+﻿<div class="message" messageType="{{::ctrl.message.MessageType}}" self="{{ctrl.message.MessageContent.FromUserId == ctrl.me}}" messagestate="{{ctrl.MessageState[ctrl.message.MessageContent.State]}}">
+    <div request="{{::ctrl.message.MessageContent.RequestType}}" ng-if="ctrl.message.MessageType == 'CustomerRequestMessage' && ctrl.message.MessageContent.RequestType != 'Custom'">
+        <h4>
+            <i class="icon {{::ctrl.AvailableRequests[ctrl.message.MessageContent.RequestType].Icon}}"></i>
+            {{::ctrl.AvailableRequests[ctrl.message.MessageContent.RequestType].Title.Value}}
+        </h4>
+        <p>
+            {{::ctrl.formatRequest()}}
+
+        </p>
+        
+
+    </div>
+    <span>        
+        {{::ctrl.message.MessageContent.UserContent}}
+    </span>
+    <div class="messageFooter">
+        <span class="messageTime">{{::ctrl.message.MessageContent.CreatedAt | date: 'HH:mm'  }}</span>
+        <div class="messagestates" ng-if="ctrl.message.MessageContent.State != ctrl.MessageState.Received">
+            <i ng-if="ctrl.message.MessageContent.State == ctrl.MessageState.Transferred" class="icon ion-android-done"></i>
+            <i ng-if="ctrl.message.MessageContent.State == ctrl.MessageState.Sent || ctrl.message.MessageContent.State == ctrl.MessageState.Read" class="icon ion-android-done-all"></i>                  
+        </div>
+        
+    </div>
+    <div style="clear:both"></div>
+</div>
+<div style="clear:both"></div>

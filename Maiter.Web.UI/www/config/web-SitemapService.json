@@ -1,0 +1,52 @@
+﻿[
+  {
+    "name": "app.home",
+    "type": "link"
+  },
+  {
+    "name": "Kullanıcı Hesabı İşlemleri",
+    "type": "heading",
+    "children": [
+      {
+        "name": "Hesap İşlemleri",
+        "pages": [
+          { "name": "app.account.login" },
+          { "name": "app.account.signOff" },
+          { "name": "app.account.register" }
+        ],
+        "type": "toggle"
+      }
+    ]
+  },
+  {
+    "name": "Kurumsal",
+    "type": "heading",
+    "authenticated": true,
+    "children": [
+      {
+        "name": "Restaurant Yönetimi",
+        "pages": [
+          { "name": "app.company.list" },
+          { "name": "app.menu.list" }
+
+        ],
+        "type": "toggle"
+      }
+    ]
+  },
+  {
+    "name": "Yönetimsel İşlemler",
+    "type": "heading",
+    "roles": ["Admin"],
+    "authenticated": true,    
+    "children": [
+      {
+        "name": "Tanımlar",
+        "pages": [
+          { "name": "app.country" }
+        ],
+        "type": "toggle"
+      }
+    ]
+  }
+]

@@ -1,0 +1,20 @@
+﻿<div class="card customer-request-card">
+    <div class="item item-divider">{{'Restaurant Menu'}}</div>
+    <div class="list slider-list wrap-list">
+        <a class="item" ng-class="{ 'item-thumbnail-left': item.Images.length}" ng-click="ctrl.aboutNavigate($event)" ui-sref="app.customer.menusections({ menuId: '{{ item.Id }}'})"
+           ng-repeat="item in ctrl.list">
+            <div class="slider-container" ng-if="item.Images.length">
+                <ion-slide-box show-pager="false" class="list-slider" delegate-handle="image-viewer" auto-play="true">
+                    <ion-slide ng-repeat="slide in item.Images track by slide.Id">
+                        <div ng-style="{'background-image': 'url(' + slide.Url + '?width=80)'}" class="list-slider-image">
+
+                        </div>
+                    </ion-slide>
+                </ion-slide-box>
+            </div>
+
+            <h2>{{ item.Name }}</h2>
+            <p>{{ item.Desc }}</p>
+        </a>
+    </div>
+</div>

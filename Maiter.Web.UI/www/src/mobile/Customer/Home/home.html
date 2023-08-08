@@ -1,0 +1,76 @@
+﻿<ion-view hide-back-button="true" view-title="{{ctrl.$state.current.data.title  || 'MobiResta'}}">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+    </ion-nav-buttons>
+
+    <ion-nav-buttons side="right">
+        <button ui-sref="app.customer.home" class="button icon-left ion-ios-information button-clear"></button>
+    </ion-nav-buttons>
+
+    <ion-content class="home-page" padding="false">
+        <div class="page-slider-container">
+            <ion-slide-box show-pager="false" auto-play="false" ng-if="ctrl.HeaderImages.length" class="page-slider" delegate-handle="image-viewer">
+                <ion-slide ng-repeat="slide in ctrl.HeaderImages track by slide.Id">
+                    <div ng-style="{'background-image': 'url(' + slide.Url + '?height=284)'}" class="slider-image row row-bottom slider-title-container" >
+                        <div class="col">
+                            <h3 class="">{{ctrl.Session.Customer.InitData.CompanyName}}</h3>
+                            <h4 class="">{{ctrl.Session.Customer.InitData.CompanyDesc}}</h4>
+                        </div>
+
+                    </div>
+                </ion-slide>
+            </ion-slide-box>
+
+            <div class="slider-tools">
+                <button ng-if="!ctrl.Session.Customer" ui-sref="app.customer.initSession" class="button button-positive icon-left ion-grid"> <translate>Start</translate></button>
+                <button ng-if="ctrl.Session.Customer" ui-sref="app.customer.contactworkers" class="button button-positive icon-left ion-android-textsms">How can we serve ?</button>
+
+                <!--<button ng-if="ctrl.Session.Customer" ui-sref="app.customer.initSession" class="button button-positive icon-left ion-grid"> {{ctrl.Session.Customer.InitData.TableName}}</></button>-->
+
+
+            </div>
+
+
+        </div>
+        <div class="card" ng-if="ctrl.Session.Customer && ctrl.Session.Customer.ShoppingCard.Items.length">
+            <div class="row ">
+                <div class="col row-center">
+                    <button ui-sref="app.customer.shoppingcard" class="button button-positive icon-left ion-android-textsms">View Orders</button>
+                </div>
+
+
+            </div>
+
+        </div>
+
+        
+
+        <menu-list menu="ctrl.Session.Customer.InitData.Menu" ng-if="ctrl.Session.Customer && ctrl.Session.Customer.InitData.Menu.length"></menu-list>
+
+
+
+        <div class="card customer-request-card" ng-if="ctrl.Session.Customer && ctrl.companyHasMenuItems()">
+            <div class="item item-divider">{{ 'From ' + ctrl.Session.Customer.InitData.CompanyName }}</div>
+            <div class="list slider-list wrap-list">
+                <a ng-click="ctrl.navigateCompanyMenu($event, item)"  class="item " ng-class="{ 'item-thumbnail-left': item.Images.length}" ng-if="item.DisplayType == ctrl.AppMenuDisplayOptions.DisplayAsHome || item.DisplayType == ctrl.AppMenuDisplayOptions.Both"
+                   ng-repeat="item in ctrl.Session.Customer.InitData.AppMenuItems">
+                    <div class="slider-container" ng-if="item.Images.length">
+                        <ion-slide-box show-pager="false" class="list-slider" delegate-handle="image-viewer" auto-play="true">
+                            <ion-slide ng-repeat="slide in item.Images track by slide.Id">
+                                <div ng-style="{'background-image': 'url(' + slide.Url + '?width=80)'}" class="list-slider-image">
+
+                                </div>
+                            </ion-slide>
+                        </ion-slide-box>
+                    </div>
+                    <h2>{{ item.Title }}</h2>
+                    <p>{{ item.Desc }}</p>
+                </a>
+                </div>
+            </div>
+
+
+
+    </ion-content>
+    
+</ion-view>

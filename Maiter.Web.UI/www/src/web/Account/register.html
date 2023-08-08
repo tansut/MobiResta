@@ -1,0 +1,80 @@
+﻿<div class="doc-content">
+    <md-card ng-if="::(ctrl.service.principal.isAuthenticated)" message>
+        <md-card-content>
+            <h2>Sisteme giriş yapmış gözüküyorsunuz</h2>
+            <p>
+                Bu sayfaya tekrar gelmeniz bir hata sonucu olabilir. Zaten sisteme {{ctrl.service.principal.identity.title}} olarak giriş
+                yapmış gözüküyorsunuz.
+            </p>
+            <p>
+                Çıkış yapmak için lütfen
+                <a ui-sref="app.account.signOff">tıklayın</a>
+            </p>
+        </md-card-content>
+    </md-card>
+    <section ng-if="::(!ctrl.service.principal.isAuthenticated)" class="md-whiteframe-z1">
+        <md-toolbar formheader>
+            <div class="md-toolbar-tools">
+                <span>Yeni Kayıt</span>
+                <span flex></span>
+            </div>
+        </md-toolbar>
+        <md-content layout-padding>
+            <div ng-if="ctrl.errorMessages && ctrl.errorMessages.length > 0" ng-repeat="err in ctrl.errorMessages">
+                <md-subheader class="md-warn md-text" md-no-sticky>{{err}}</md-subheader>
+            </div>
+            <form name="form" novalidate ng-submit="form.$valid  && ctrl.register(form)">
+                <md-input-container>
+                    <label>Adınız</label>
+                    <input ng-model="ctrl.model.Name" type="text" name="name" required " />
+                    <span ng-messages="form.name.$error" role="alert" ng-if="form.name.$touched || form.$submitted">
+                        <span ng-messages-include="src/UI/ErrorMessages.html"></span>
+                    </span>
+                </md-input-container>
+                <md-input-container>
+                    <label>Soyadınız</label>
+                    <input ng-model="ctrl.model.Surname" type="text" name="surname" required />
+                    <span ng-messages="form.surname.$error" role="alert" ng-if="form.surname.$touched || form.$submitted">
+                        <span ng-messages-include="src/UI/ErrorMessages.html"></span>
+                    </span>
+                </md-input-container>
+                <md-input-container>
+                    <label>E-posta Adresi</label>
+                    <input ng-model="ctrl.model.Email" type="email" name="email" required />
+                    <span ng-messages="form.email.$error" role="alert" ng-if="form.email.$touched || form.$submitted">
+                        <span ng-messages-include="src/UI/ErrorMessages.html"></span>
+                    </span>
+                </md-input-container>
+                <md-input-container>
+                    <label>Parola</label>
+                    <input ng-model="ctrl.model.Password" type="password" name="pass1" required ng-minlength="6" compare-to="ctrl.model.PasswordRepeat" />
+                    <span ng-messages="form.pass1.$error" role="alert" ng-if="form.pass1.$touched || form.$submitted">
+                        <span ng-message="minlength">Şifre En Az 6 Karakter Olmalıdır</span>
+                        <span ng-message="compareTo">Şifreler Birbirleriyle Uyuşmuyor.</span>
+                        <span ng-messages-include="src/UI/ErrorMessages.html"></span>
+                    </span>
+                </md-input-container>
+                <md-input-container>
+                    <label>Parola Tekrar</label>
+                    <input ng-model="ctrl.model.PasswordRepeat" type="password" name="pass2" required ng-minlength="6" />
+                    <span ng-messages="form.pass2.$error" role="alert" ng-if="form.pass2.$touched || form.$submitted">
+                        <span ng-message="minlength">Şifre En Az 6 Karakter Olmalıdır</span>
+                        <span ng-messages-include="src/UI/ErrorMessages.html"></span>
+                    </span>
+                </md-input-container>
+                <div layout layout-align="space-between center">
+                    <md-button class="md-raised md-primary" type="submit">Kaydol</md-button>
+                    <div>
+                        <md-button aria-label="facebook" class="md-primary md-hue-2" title="Facebook" type="button" ng-click="ctrl.authExternalProvider('Facebook')">
+                            <md-icon md-svg-icon="social:facebook" fill="fill: pink"></md-icon>Facebook Giriş
+                        </md-button>
+                    </div>
+                    <div>
+                        <md-button ui-sref="account-reset-password">Şifremi Unuttum</md-button>
+                    </div>
+                </div>
+            </form>
+
+        </md-content>
+    </section>
+</div>

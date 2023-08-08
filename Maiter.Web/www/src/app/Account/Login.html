@@ -1,0 +1,36 @@
+  <md-card ng-if="::(ctrl.service.principal.isAuthenticated)" message>
+    <md-card-content>
+      <h2>Sisteme giriş yapmış gözüküyorsunuz</h2>
+      <p>Bu sayfaya tekrar gelmeniz bir hata sonucu olabilir. Zaten sisteme {{ctrl.service.principal.identity.title}} olarak giriş
+        yapmış gözüküyorsunuz.</p>
+      <p>Çıkış yapmak için lütfen
+        <a ui-sref="account-logoff">tıklayın</a>
+      </p>
+    </md-card-content>
+  </md-card>
+  <section ng-if="::(!ctrl.service.principal.isAuthenticated)" class="md-whiteframe-z1">
+    <md-toolbar formHeader>
+      <div class="md-toolbar-tools">
+        <span>Kullanıcı Girişi</span>
+        <span flex></span>
+      </div>
+    </md-toolbar>
+    <md-content layout-padding>
+      <form name="form" novalidate ng-submit="form.$valid && ctrl.loginAsCustomer()">
+        <md-input-container>
+          <label>E-posta Adresi</label>
+          <input ng-model="ctrl.model.ID" type="email" required/>
+        </md-input-container>
+        <md-input-container>
+          <label>Parola</label>
+          <input ng-model="ctrl.model.Password" type="password" required/>
+        </md-input-container>
+        <div layout layout-align="space-between center">
+          <md-button class="md-raised md-primary" type="submit">Giriş Yap</md-button>
+          <div>            
+            <md-button ui-sref="account-reset-password">Şifremi Unuttum</md-button>
+          </div>
+        </div>
+      </form>
+    </md-content>
+  </section>

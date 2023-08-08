@@ -1,0 +1,50 @@
+﻿<md-dialog aria-label="" flex="55">
+    <form name="form" novalidate ng-submit="form.$valid && ctrl.attachNewFile()">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Edit / Upload Images</h2>
+                <span flex></span>
+                <md-button type="button" class="md-icon-button" ng-click="ctrl.CloseDialog()">
+                    <md-icon md-svg-src="content:clear" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div ayout="column">
+                <md-input-container flex ng-if="!ctrl.UploadInProgress">
+                    <label>Title (Optional)</label>
+                    <input ng-model="ctrl.FileTitle" />
+                </md-input-container>
+                <md-input-container flex ng-if="!ctrl.UploadInProgress">
+                    <label>Description (Optional)</label>
+                    <input ng-model="ctrl.Desc" />
+                </md-input-container>
+
+                <md-input-container flex ng-if="!ctrl.UploadInProgress">
+                    <label>Display Order</label>
+                    <input type="number" ng-model="ctrl.DisplayOrder" />
+                </md-input-container>
+                <md-input-container flex ng-if="!ctrl.UploadInProgress">
+                    <div ngf-drop ngf-select ng-model="ctrl.AttachedFile" class="drop-box"
+                         ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="false"
+                         accept="image/*">
+                            {{ctrl.AttachedFile ? 'Done! Click Save button to save file': 'Drop file here or click to upload' }}
+                            </div>
+                </md-input-container>
+                <md-input-container layout="column" layout-align="center center" flex ng-if="ctrl.UploadInProgress">
+                    <h3>{{ctrl.UploadPercentage|number:0}}%</h3>
+                    <md-progress-linear md-mode="determinate" ng-value="ctrl.UploadPercentage"></md-progress-linear>
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+
+        <div class="md-actions" layout="row">
+            <md-button ng-if="!ctrl.UploadInProgress" class="md-primary" type="submit">Save</md-button>
+            <span flex></span>
+            <md-button type="button" ng-click="ctrl.CloseDialog()">Cancel</md-button>
+        </div>
+
+    </form>
+
+
+</md-dialog>

@@ -1,0 +1,11 @@
+﻿<md-bottom-sheet class="md-list md-has-header">
+    <md-subheader>{{ctrl.Header}}</md-subheader>
+    <md-list>
+        <md-list-item ng-repeat="item in ctrl.Items">
+            <md-button class="md-list-item-content" ng-href="{{item.Href}}" ng-click="ctrl.ItemSelected($index,item)">
+                <md-icon ng-if="item.Icon" md-svg-src="{{item.Icon}}"></md-icon>
+                <span class="md-inline-list-icon-label">{{ item.Title }}</span>
+            </md-button>
+        </md-list-item>
+    </md-list>
+</md-bottom-sheet>

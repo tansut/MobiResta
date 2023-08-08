@@ -1,0 +1,30 @@
+<ion-view view-title="{{ctrl.requestMeta.title}}">
+<ion-content class="page-content" padding="false">
+<form name="callTaxyForm" ng-submit="ctrl.go(callTaxyForm)" novalidate>
+  <div class="card">
+    <div class="item item-divider">Taksi geldiğinde haber vermemizi ister misiniz?</div>
+    <div>
+      <ion-checkbox name="notifyMe" ng-model="ctrl.request.notifyMe" ng-true-value="'yes'" ng-required="!ctrl.request.notifyMe">Evet</ion-checkbox>
+      <ion-checkbox name="notifyMe" ng-model="ctrl.request.notifyMe" ng-true-value="'no'"  ng-required="!ctrl.request.notifyMe">Hayır</ion-checkbox>
+    </div>
+    <span class="errorContainer" ng-messages="callTaxyForm.notifyMe.$error" role="alert">
+      <!-- Required Override Ediyorum. -->
+      <span class="inputError errorMessage" ng-message="required">Seçim Yapmalısınız.</span>
+      <span ng-messages-include="templates/validation/standartErrorMessages.html"></span>
+    </span>
+  </div>
+  <div class="card">
+    <div class="item item-divider">Ayrıca iletmek istediğiniz bir notunuz var mı?</div>
+    <label class="item item-input">
+      <input name="requestNote" ng-model="ctrl.request.requestNote" minlength="5" type="text" placeholder="Varsa kısaca yazın">
+    </label>
+    <span class="errorContainer" ng-messages="callTaxyForm.requestNote.$error" role="alert">
+      <span ng-messages-include="templates/validation/standartErrorMessages.html"></span>
+    </span>
+  </div>
+  <div class="padding">
+    <button type="submit" class="button button-positive icon-right ion-chevron-right">{{ctrl.requestMeta.title}}</button>
+  </div>
+</form>
+</ion-content>
+</ion-view>

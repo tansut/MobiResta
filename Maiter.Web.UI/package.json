@@ -1,0 +1,29 @@
+{
+  "name": "maiter-customer-app",
+  "version": "1.0.0",
+  "devDependencies": {
+    "browser-sync": "^2.7.10",
+    "browserify": "^10.2.4",
+    "del": "^1.2.0",
+    "gulp": "^3.9.0",
+    "gulp-angular-gettext": "^2.1.0",
+    "gulp-angular-templatecache": "^1.7.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-sass": "^2.0.1",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-typescript": "*",
+    "gulp-uglify": "^1.2.0",
+    "gulp-util": "^3.0.6",
+    "gulp-watch": "^4.3.4",
+    "run-sequence": "^1.1.1",
+    "tsify": "^0.11.2",
+    "typescript": "1.5.0-beta",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-paths": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "dependencies": {
+    "reflect-metadata": "^0.1.0"
+  }
+}

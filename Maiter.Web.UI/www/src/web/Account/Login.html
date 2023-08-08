@@ -1,0 +1,54 @@
+<section class="doc-content" ng-if="::(ctrl.service.principal.isAuthenticated)">
+
+    <md-content layout-padding>
+        <h2>Sisteme giriş yapmış gözüküyorsunuz</h2>
+        <p>
+            Bu sayfaya tekrar gelmeniz bir hata sonucu olabilir. Zaten sisteme {{ctrl.service.principal.identity.title}} olarak giriş
+            yapmış gözüküyorsunuz.
+        </p>
+        <p>
+            Çıkış yapmak için lütfen
+            <a ui-sref="app.account.signOff">tıklayın</a>
+        </p>
+    </md-content>
+</section>
+
+<section ng-if="::(!ctrl.service.principal.isAuthenticated)" class="md-whiteframe-z1 doc-content">
+    <md-toolbar formheader>
+        <div class="md-toolbar-tools">
+            <span translate>Kullanici Girişi</span>
+            <span flex></span>
+        </div>
+    </md-toolbar>
+    <md-content layout-padding>
+        <div>
+            {{ctrl.message}}
+        </div>
+        <form name="form" novalidate ng-submit="form.$valid && ctrl.loginAsCustomer()">
+            <md-input-container>
+                <label>E-posta Adresi</label>
+                <input ng-model="ctrl.model.ID" type="email" required name="email" />
+            </md-input-container>
+            <md-input-container>
+                <label>Parola</label>
+                <input ng-model="ctrl.model.Password" type="password" required name="password" />
+            </md-input-container>
+            <md-input-container>
+                <md-checkbox md-no-ink ng-model="ctrl.model.UseRefreshTokens" aria-label="Beni Hatırla" name="rememberMe">
+                    Beni Hatırla
+                </md-checkbox>
+            </md-input-container>
+            <div layout layout-align="space-between center">
+                <md-button class="md-raised md-primary" type="submit">Giriş Yap</md-button>
+                <div>
+                    <md-button aria-label="facebook" class="md-primary md-hue-2"  title="Facebook" type="button" ng-click="ctrl.authExternalProvider('Facebook')">
+                        <md-icon md-svg-icon="social:facebook" fill="fill: pink"></md-icon>Facebook Giriş
+                    </md-button>
+                </div>
+                <div>
+                    <md-button ui-sref="app.account.resetpassword">Şifremi Unuttum</md-button>
+                </div>
+            </div>
+        </form>
+    </md-content>
+</section>

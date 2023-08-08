@@ -1,0 +1,45 @@
+﻿<section ng-if="ctrl.$Ready" class="md-whiteframe-z1 doc-content">
+    <md-content>
+        <md-toolbar formheader>
+            <div class="md-toolbar-tools">
+                <span> Restaurant Bölümleri</span>
+                <span flex></span>
+                <md-button ui-sref="app.company.sections.new" aria-label="Ekle">
+                    <md-icon md-svg-icon="content:add_circle"></md-icon>
+                    <span> Yeni</span>
+                </md-button>
+
+            </div>
+        </md-toolbar>
+        <div ng-if="ctrl.target == 'tables'" layout-padding class="hint mention-bg" layout="row">
+
+            <md-icon big md-svg-icon="action:face"></md-icon>
+
+            <span flex>                
+                Lütfen masaları yönetmek için önce aşağıdan ilgili restaurant bölümünü seçiniz. 
+            </span>
+        </div>
+        <md-content ng-if="!ctrl.$Entity.Sections.length" layout-padding >
+            <h2 md-headline>Bu bölümde henüz hiç bir tanım gözükmüyor.</h2>
+            <p md-subhead>Hemen yukarıda <md-icon md-svg-icon="content:add_circle"></md-icon> butonuna tıklayarak işe başlayabilirsiniz.</p>
+        </md-content>
+        <md-list>
+            <div ng-repeat="entity in ctrl.$Entity.Sections">
+                <md-list-item class="md-2-line" ng-click="ctrl.editEntity($event, entity)">
+                    
+                    <div class="md-list-item-text">
+                        <h3>{{ entity.Name }}</h3>
+                        <h4>{{ entity.Desc }}</h4>
+                    </div>
+                    <md-icon class="md-secondary" ng-click="ctrl.showEntityActions($event, entity)" md-svg-icon="action:view_headline"></md-icon>
+                </md-list-item>
+                <md-divider ng-if="$index != ctrl.$Entity.Sections.length-1"></md-divider>
+            </div>
+
+        </md-list>
+    </md-content>
+</section>
+
+<div ui-view></div>
+
+

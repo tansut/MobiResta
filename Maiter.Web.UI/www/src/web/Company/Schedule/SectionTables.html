@@ -1,0 +1,47 @@
+﻿<section ng-if="ctrl.$Ready" class="doc-content">
+    <md-content>
+        <h2 md-headline>{{ctrl.$Entity.Name}}</h2>
+        <span md-subhead>{{ctrl.$Entity.Desc}}</span>
+    </md-content>
+</section>
+
+<section layout="column" layout-align="center center" ng-if="ctrl.$Ready" class="doc-content md-whiteframe-z1">
+    <div flex layout-padding class="hint mention-bg" layout="row">
+        <md-icon big md-svg-icon="action:face"></md-icon>
+        <span flex>
+            Hangi saat aralıklarında hangi servis görevlilerinin masalara hizmet vereceğini tanımlamak için lütfen masa seçim kriteri oluşturun veya mevcut seçim kriterlerini düzenleyin.
+        </span>
+    </div>
+    <div class="md-padding">
+        <md-button class="md-primary md-raised" ng-click="ctrl.newTableGroup()">
+            <md-icon md-svg-icon="content:add"></md-icon>
+
+            <translate>Table Selection Criteria</translate>
+        </md-button>
+        <md-button ng-if="ctrl.$Dirty" class="md-raised md-warn" ng-click="ctrl.saveAll()">
+            <span> Değişiklikleri Save</span>
+        </md-button>
+    </div>
+</section>
+
+<section ng-if="ctrl.$Ready" ng-repeat="table in ctrl.$Entity.TableService" class="md-whiteframe-z1 doc-content">
+    <md-toolbar formheader>
+        <div class="md-toolbar-tools">
+            <span>{{table.ResourceData.Title}} - {{table.ResourceData.Expression}}</span>
+            <span flex></span>
+            <md-button ng-click="ctrl.editTablePlan(table)" aria-label="Ekle">
+                <md-icon md-svg-icon="action:view_list"></md-icon>
+                <translate>Table Selection</translate>
+            </md-button>
+            <md-button ng-click="ctrl.removeTablePlan(table)">
+                <md-icon md-svg-icon="content:remove"></md-icon>
+                <translate>Remove</translate>
+            </md-button>
+
+        </div>
+    </md-toolbar>
+
+    <md-content>
+        <timing dirty="ctrl.$Dirty" company="ctrl.$Entity.CompanyId" edit="table.Timing"></timing>
+    </md-content>
+</section>

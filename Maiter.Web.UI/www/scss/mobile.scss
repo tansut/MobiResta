@@ -1,0 +1,486 @@
+@import "css3-mixins";
+@import "Ionic";
+
+$bar-color: #387EF5;
+$divider-bg: #ccc;
+$invalidBorder: 1px dashed red;
+$page-slider-height: 234px;
+$card-slider-height: 234px;
+
+.page-content {
+    background-color: #F5F7FB;
+}
+
+.item-divider {
+    /*@include background-gradient(lighten($divider-bg, 10%), lighten($divider-bg, 15%));*/
+}
+
+.video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 111111 !important;
+}
+
+.video-container iframe,
+.video-container object,
+.video-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.card-margin-top {
+    margin-top: 20px;
+}
+
+.wrap-list {
+    .item {
+        p, h2 {
+            overflow: visible;
+            white-space: normal;
+        }
+    }
+}
+
+.companyContent {
+    .slider-pager {
+        top: 20px;
+    }
+}
+
+.maiter-block-ui {
+}
+
+.col-no-padding {
+    padding: 0px;
+}
+
+.no-top-pad {
+    padding-top: 0px !important;
+}
+
+.no-left-pad {
+    padding-left: 0px !important;
+}
+
+.margin-top {
+    margin-top: 5px;
+}
+
+.margin-bottom {
+    margin-bottom: 5px;
+}
+
+.item {
+    > .row, > .col {
+        padding: 0px;
+    }
+}
+
+.sub-list-item {
+    border-color: #ddd;
+    border-bottom-style: solid;
+    border-width: 1px;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+
+    h3 {
+        font-weight: normal;
+    }
+
+    padding {
+        font-size:90%;
+    }
+}
+
+.border-bottom {
+    border-bottom: 2px solid #ddd;
+}
+h2.sub-list-title {
+    margin-bottom: 8px;
+    font-size: 14px !important;
+}
+
+.sub-list {
+    
+}
+
+.food-container {
+    .food-header {
+    }
+
+    h2 {
+        font-size: 1em;
+    }
+}
+
+.slider-list {
+    .slider-container {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 80px;
+        min-height: 80px;
+        height: auto;
+    }
+
+    h2 {
+        font-size: 1.1em;
+        /*font-weight:bolder;*/
+    }
+
+    p {
+        /*font-size:1.05em;*/
+    }
+
+    .list-slider {
+        height: 80px;
+        min-height: 80px;
+        margin: 0 auto;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .list-slider-image {
+        background-size: cover;
+        height: 100%;
+        background-position: center center;
+        @include border-radius(5px);
+    }
+}
+
+.tags {
+    overflow: visible;
+    white-space: normal;
+    /*.tag {
+        padding: 8px;
+        background-color: #F6F6F6 !important;
+        color: #666 !important;
+        border-radius: 8px;
+        height: 32px;
+        line-height: 32px;
+        padding: 0 8px 0 8px;
+        margin-right:8px;
+        font-size: 14px;
+        @include box-shadow(1px, 1px, 1px, darken(#F6F6F6, 25%));
+    }*/
+}
+
+.user-content {
+    padding: 15px;
+
+    ol, ul {
+        list-style: initial;
+        margin-left: 32px;
+
+        li {
+            list-style-position: inside;
+        }
+    }
+
+    a {
+        font-style: normal;
+        text-decoration: none;
+    }
+
+    ul {
+        li {
+            list-style-type: disc;
+        }
+    }
+
+    ol {
+        li {
+            list-style-type: decimal;
+        }
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+}
+
+.card-slider-list {
+    .slider-container {
+        height: $card-slider-height;
+        width: 100%;
+        padding: 0px;
+        margin: 0px;
+        border-top: none;
+        border-bottom: none;
+    }
+
+    .card-slider {
+        height: $card-slider-height;
+        margin: 0 auto;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .card-slider-image {
+        background-size: cover;
+        height: 100%;
+        background-position: center center;
+    }
+}
+
+
+body.ready {
+    #appBody {
+        opacity: 1;
+    }
+
+    background-color: none;
+
+    #loading {
+        display: none;
+    }
+}
+
+body {
+    #appBody {
+        opacity: 0;
+        @include transition (opacity 0.5s ease-in);
+    }
+
+
+    #loading {
+        height: 300px;
+        width: 100%;
+        text-align: center;
+        color: #185694;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: auto;
+        margin-bottom: auto;
+        font-size: 1.5em;
+        padding-top: 250px;
+    }
+}
+
+
+
+
+.home-page .card {
+    box-shadow: none;
+}
+
+.chat {
+    overflow: visible;
+    margin: 0;
+    padding: 0;
+
+    .message {
+        border-radius: .50rem;
+        background: #fff;
+        color: #383641;
+        padding: .6875rem;
+        margin: 0;
+        font-size: .975rem;
+        margin-bottom: 12px;
+        clear: both;
+        max-width: 75%;
+        @include box-shadow(1px 1px #D0D0D0);
+
+        .messagestates {
+            display: inline;
+            padding-left: 4px;
+        }
+
+        .messageTime {
+            font-size: .8rem;
+        }
+
+        .messageFooter {
+            color: #b9b9b9;
+            text-align: right;
+            float: right;
+            clear: both;
+            overflow: visible;
+            margin-left: 8px;
+        }
+    }
+
+    .message[messagestate^="Read"] {
+        .messagestates i {
+            color: #029FFA;
+        }
+    }
+
+    .message[self^="true"] {
+        background-color: #C1FAA8;
+        float: right;
+    }
+
+    .message[self^="false"] {
+
+
+        .messagestates {
+            display: none;
+        }
+    }
+}
+
+
+ion-footer-bar {
+    form, input {
+        width: 100%;
+    }
+}
+
+
+
+
+form.ng-dirty.ng-invalid {
+    .errorContainer.ng-active {
+        text-align: center;
+        display: block;
+
+        span.errorMessage {
+            color: rgba(215,40,40,0.7);
+        }
+    }
+}
+
+.customer-request-card {
+    .item-divider {
+        background-color: #185694 !important;
+        color: #fff;
+        font-weight: normal;
+    }
+}
+
+.home-page {
+    background-color: lighten($bar-color, 35%);
+
+
+
+
+    .home-header {
+    }
+}
+
+.chat-page {
+    .bar .title {
+        text-align: left;
+    }
+
+    .chat-content {
+        padding-top: 44px;
+        bottom: 0px !important;
+    }
+}
+
+.slider-title-container {
+    z-index: 2;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-left: 20px;
+
+
+    h3, h4 {
+        color: #eee;
+        font-weight: normal;
+        @include text-shadow(0px,0px, 2px,#222)
+    }
+}
+
+.page-slider-container {
+
+
+
+    .page-slider {
+        height: $page-slider-height;
+        margin: 0 auto;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .slider-image {
+        background-size: cover;
+        height: 100%;
+        background-position: center center;
+
+        .caption {
+        }
+    }
+
+    .slider-tools {
+        float: right;
+        margin-top: 15px;
+        margin-right: 15px;
+        color: #fff;
+    }
+    /*.slider-title-singleline {
+        margin-top: $page-slider-height - 42 !important;
+    }*/
+    clear: both;
+    height: $page-slider-height;
+    overflow: hidden;
+    max-width: 100% !important;
+}
+
+.no-padding {
+    padding: 0px !important;
+}
+
+
+#Profile {
+    .avatar-section {
+        width: 100%;
+        display: table;
+        text-align: center;
+        margin: 0px auto;
+        padding: 0 0 25 0;
+        vertical-align: middle;
+        height: inherit;
+        position: relative;
+        z-index: 2;
+    }
+
+    .avatar-img {
+        display: inline-block;
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        border-width: 2px;
+        border-style: solid;
+        border-color: #fff;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: #f3f3f3;
+        position: relative;
+        z-index: 2;
+    }
+
+    #profilList span {
+        text-align: left;
+    }
+
+
+    .item-select select {
+        right: auto;
+        padding: 13px 45px 15px 0px;
+        direction: ltr;
+    }
+}

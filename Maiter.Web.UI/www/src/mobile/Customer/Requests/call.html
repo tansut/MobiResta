@@ -1,0 +1,19 @@
+﻿<ion-view view-title="{{ctrl.Title }}">
+    <ion-nav-buttons side="right">
+        <button ui-sref="app.customer.home" class="button icon-left ion-home button-clear"></button>
+    </ion-nav-buttons>
+    <ion-content class="page-content" padding="false">
+        <form name="requestForm" ng-submit="requestForm.$valid && ctrl.sendRequest()" novalidate>
+
+            <div class="card">
+                <div translate class="item item-divider">Call Waiter</div>
+                <label class="item item-input">
+                    <input name="userText" ng-model="ctrl.UserText" type="text" placeholder="{{'Any optional extra note ?' | translate }}">
+                </label>
+            </div>
+            <div class="padding">
+                <button translate type="submit" class="button button-positive icon-right ion-chevron-right">Send</button>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>

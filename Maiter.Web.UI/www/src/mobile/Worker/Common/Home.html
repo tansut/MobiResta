@@ -1,0 +1,41 @@
+﻿<ion-view view-title="{{ ctrl.InitData.CompanyName || 'MobiResta'}}">
+    <ion-content padding="true">
+        <div translate ng-if="ctrl.Session.Worker && !ctrl.Session.MessagingActive()">
+            It seems we are having network connection problems. Trying to reconnect ...
+        </div>
+        <h3>
+            {{ ctrl.InitData.CompanyName }}
+        </h3>
+
+
+
+    <div class="card">
+        <div class="item item-divider">{{ 'Message Sources' | translate }}</div>
+        <ion-list>
+            <a ui-sref="app.worker.incoming({ fromService: '{{ ctrl.ServiceKinds[key]}}'})" class="item"
+               ng-repeat="(key,value) in ctrl.Session.Worker.RoleMessages.Items | regex:'key':'^[0-9]+$'">
+                {{ ctrl.ServiceKinds[key] | translate }}
+                <span class="badge badge-assertive">{{ ctrl.Session.Worker.Messages.Items[key].Items.length }}</span>
+            </a>
+        </ion-list>
+    </div>
+
+
+
+    <!--<div class="card">
+        <div class="item item-divider">{{ 'Görevli Rolleri' | translate }}</div>
+        <ion-list>
+            <a ui-sref="app.worker.{{role}}" class="item"
+               ng-repeat="role in ctrl.RolesView ">
+                {{ role | translate }}
+            </a>
+        </ion-list>
+    </div>-->
+    
+
+    </ion-conte
+    nt
+
+
+>
+</ion-view>

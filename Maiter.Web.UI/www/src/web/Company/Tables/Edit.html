@@ -1,0 +1,62 @@
+﻿<md-dialog flex="75">
+
+    <form name="form" novalidate ng-submit="form.$valid && ctrl.save()">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>{{ctrl.$Id ? 'Düzenle': 'Ekle'}}</h2>
+                <span flex></span>
+                <md-button type="button" class="md-icon-button" ng-click="ctrl.CloseDialog()">
+                    <md-icon md-svg-src="content:clear" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <div ng-if="ctrl.$Id" style="height:250px;width:100%;text-align:center">
+            <img ng-src="barcode?code={{ (ctrl.TagDomain + ctrl.$Entity.BarcodeContent) | urlencode }}&width=200&height=200" />
+        </div>
+        <md-dialog-content>
+            <div layout="row" layout-sm="column">
+                <md-input-container flex>
+                    <label>Masa Görünen Adı (ör MASA-015)</label>
+                    <input ng-model="ctrl.$Entity.Name" required />
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Masa No (ör 15)</label>
+                    <input type="number" ng-model="ctrl.$Entity.Number" required />
+                </md-input-container>
+            </div>
+            <div layout="row" layout-sm="column">
+                <md-input-container flex>
+                    <label>Açıklama (ör Giriş soldan 2. masa)</label>
+                    <input ng-model="ctrl.$Entity.Desc" />
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Masa Grubu (İsteğe Bağlı)</label>
+                    <input ng-model="ctrl.$Entity.TableGroup" />
+                </md-input-container>
+            </div>
+            <div layout="row" layout-sm="column">
+                <md-chips flex ng-model="ctrl.$Entity.Tags" md-on-append="ctrl.newTag($chip)"
+                          placeholder="Etiket ekleyin"
+                          secondary-placeholder="+Etiket">
+                    <md-autocomplete md-selected-item="ctrl.selectedTagItem"
+                                     md-search-text="ctrl.searchTagText"
+                                     md-items="item in ctrl.queryTagSearch(ctrl.searchTagText)"
+                                     md-item-text="item.Name"
+                                     md-delay="250"
+                                     placeholder="+Etiket">
+                        <span md-highlight-text="ctrl.searchTagText">{{item}}</span>
+                    </md-autocomplete>
+                    <md-chip-template>
+                        <strong>{{$chip.Name}}</strong>
+                    </md-chip-template>
+                </md-chips>
+            </div>
+        </md-dialog-content>
+
+        <div class="md-actions" layout="row">
+            <md-button class="md-primary" type="submit">Save</md-button>
+            <span flex></span>
+            <md-button type="button" ng-click="ctrl.CloseDialog()">Cancel</md-button>
+        </div>
+    </form>
+</md-dialog>

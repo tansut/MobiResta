@@ -1,0 +1,22 @@
+<ion-view view-title="{{ctrl.requestMeta.title}}">
+  <ion-content class="page-content" padding="false">
+    <form ng-submit="ctrl.go()">
+      <div class="card">
+        <div class="item item-divider">Nasıl yardımcı olabilirim?</div>
+        <label class="item item-input">
+          <input required type="text" placeholder="{{ctrl.branch.toTitle}} talebiniz" ng-model="ctrl.request.text">
+        </label>
+      </div>
+      <div class="padding">
+        <button type="submit" class="button button-positive icon-right ion-chevron-right">İlet</button>
+      </div>      
+      <div class="card">
+        <div class="item item-divider">Hızlı Talep ?</div>
+        <ion-list ng-repeat="item in ctrl.activeList">
+          <ion-item class="item" ng-click="ctrl.sendMessage(item)">{{item}}</ion-item>
+        </ion-list>
+      </div>
+
+    </form>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,285 @@
+﻿<section ng-if="ctrl.$Entity.Attachments.length" class="pageImages">
+    <ul rn-carousel rn-carousel-index="carouselIndex2" rn-carousel-transition="zoom" rn-carousel-auto-slide rn-carousel-pause-on-hover rn-carousel-buffered>
+        <li ng-repeat="slide in ctrl.$Entity.Attachments track by slide.Id">
+            <div ng-style="{'background-image': 'url(/attach/' + slide.Id + '___' + slide.FileName + ')'}" class="bgimage">
+
+            </div>
+        </li>
+    </ul>
+</section>
+<section class="md-whiteframe-z2 doc-content" ng-if="!ctrl.editingProperty">
+    <md-content class="md-padding">
+        <form name="form" novalidate ng-submit="form.$valid && ctrl.save()">
+            <div layout="row" layout-sm="column">
+                <md-autocomplete flex required
+                                 md-selected-item="ctrl.cascade.menuSelected"
+                                 md-search-text-change="ctrl.menuSearchTextChange(ctrl.cascade.menuSearch)"
+                                 md-search-text="ctrl.cascade.menuSearch"
+                                 md-items="item in ctrl.queryMenu(ctrl.cascade.menuSearch)"
+                                 md-selected-item-change="ctrl.menuSelectedChange(item)"
+                                 md-item-text="item.Name"
+                                 md-min-length="0"
+                                 placeholder="Dahil etmek istediğiniz menü" ,
+                                 md-input-name="foodmenu"
+                                 md-floating-label="Menü">
+                    <md-item-template>
+                        <span md-highlight-text="ctrl.cascade.menuSearch" md-highlight-flags="^i">{{item.Name}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                        No matches found for "{{ctrl.cascade.menuSearch}}".
+                    </md-not-found>
+                    <span ng-messages="form.foodmenu.$error" role="alert" ng-if="form.foodmenu.$touched || form.$submitted">
+                        <span ng-messages-include="src/UI/ErrorMessages.html"></span>
+                    </span>
+                </md-autocomplete>
+                <md-autocomplete flex required
+                                 md-selected-item="ctrl.cascade.sectionSelected"
+                                 md-search-text-change="ctrl.sectionSearchTextChange(ctrl.cascade.sectionSearch)"
+                                 md-search-text="ctrl.cascade.sectionSearch"
+                                 md-items="item in ctrl.querySection(ctrl.cascade.sectionSearch)"
+                                 md-item-text="item.Name"
+                                 md-min-length="0"
+                                 placeholder="Menü kısmı seçin"
+                                 md-input-name="foodsection"
+                                 md-floating-label="Menü Kısmı">
+                    <md-item-template>
+                        <span md-highlight-text="ctrl.cascade.sectionSearch" md-highlight-flags="^i">{{item.Name}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                        No matches found for "{{ctrl.cascade.sectionSearch}}".
+                    </md-not-found>
+                    <span ng-messages="form.foodsection.$error" role="alert" ng-if="form.foodsection.$touched || form.$submitted">
+                        <span ng-messages-include="src/UI/ErrorMessages.html"></span>
+                    </span>
+                </md-autocomplete>
+            </div>
+
+            <div layout="row" layout-sm="column">
+                <md-input-container flex>
+                    <label>Hizmet/Yemek adı. Ör Balık Izgara</label>
+                    <input name="entityName" ng-model="ctrl.$Entity.Name" required />
+                    <span ng-messages="form.entityName.$error" role="alert" ng-if="form.entityName.$touched || form.$submitted">
+                        <span ng-messages-include="src/UI/ErrorMessages.html"></span>
+                    </span>
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Kısa açıklaması (İsteğe bağlı)</label>
+                    <input name="desc" ng-model="ctrl.$Entity.Desc" ng-maxlength="255" />
+                    <span ng-messages="form.desc.$error" role="alert" ng-if="form.desc.$touched || form.$submitted">
+                        <span ng-messages-include="src/UI/ErrorMessages.html"></span>
+                    </span>
+                </md-input-container>
+
+            </div>
+            <div layout="row" layout-sm="column">
+                <md-input-container flex>
+                    <label>Ücreti</label>
+                    <input name="price" ng-model="ctrl.$Entity.Price" type="number" required min="0" />
+                    <span ng-messages="form.price.$error" role="alert" ng-if="form.price.$touched || form.$submitted">
+                        <span ng-messages-include="src/UI/ErrorMessages.html"></span>
+                    </span>
+                </md-input-container>
+                <md-autocomplete flex required
+                                 md-selected-item="ctrl.$Entity.Currency"
+                                 md-search-text="ctrl.currencySearch"
+                                 md-items="item in ctrl.queryCurrency(ctrl.currencySearch)"
+                                 md-item-text="item"
+                                 md-min-length="0"
+                                 placeholder="Dahil etmek istediğiniz menü" ,
+                                 md-input-name="foodcurrency"
+                                 md-floating-label="Para Birimi">
+                    <md-item-template>
+                        <span md-highlight-text="ctrl.currencySearch" md-highlight-flags="^i">{{item}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                        No matches found for "{{ctrl.currencySearch}}".
+                    </md-not-found>
+                    <span ng-messages="form.foodcurrency.$error" role="alert" ng-if="form.foodcurrency.$touched || form.$submitted">
+                        <span ng-messages-include="src/UI/ErrorMessages.html"></span>
+                    </span>
+                </md-autocomplete>
+                <md-input-container flex>
+                    <label>Sırası</label>
+                    <input type="number" ng-model="ctrl.$Entity.DisplayOrder" />
+                </md-input-container>
+
+            </div>
+
+            <div layout="row" layout-sm="column">
+                <md-chips flex ng-model="ctrl.$Entity.Tags" md-on-append="ctrl.newTag($chip)"
+                          placeholder="Etiket ekleyin"
+                          secondary-placeholder="+Etiket">
+                    <md-autocomplete md-selected-item="ctrl.selectedTagItem"
+                                     md-search-text="ctrl.searchTagText"
+                                     md-items="item in ctrl.queryTagSearch(ctrl.searchTagText)"
+                                     md-item-text="item"
+                                     md-delay="250"
+                                     placeholder="+Etiket">
+                        <span md-highlight-text="ctrl.searchTagText">{{item}}</span>
+                    </md-autocomplete>
+                    <md-chip-template>
+                        <strong>{{$chip.Name}}</strong>
+                    </md-chip-template>
+                </md-chips>
+            </div>
+            <div layout="row" layout-sm="column">
+                <md-input-container flex>
+                    <label translate>Long Description (optional)</label>
+                    <textarea name="richDesc" columns="1" md-maxlength="500" ng-model="ctrl.$Entity.RichDesc"></textarea>
+                    <span ng-messages="form.richDesc.$error" role="alert" ng-if="form.richDesc.$touched || form.$submitted">
+                        <span ng-messages-include="src/UI/ErrorMessages.html"></span>
+                    </span>
+                </md-input-container>
+            </div>
+            <div class="md-whiteframe-z2">
+                <md-toolbar class="innerToolbarHeader" formheader>
+                    <div class="md-toolbar-tools header48">
+                        <span> Özellikler</span>
+                        <span flex></span>
+                        <md-button type="button" ng-click="ctrl.newProperty()" aria-label="Ekle">
+                            <md-icon md-svg-icon="content:add_circle"></md-icon>
+                            <span> New</span>
+                        </md-button>
+                    </div>
+                </md-toolbar>
+                <md-content ng-if="!ctrl.$Entity.FoodProperties.length" layout-padding>
+                    <h4 md-headline>Bu bölümde henüz hiç bir tanım gözükmüyor.</h4>
+                    <p md-subhead>Hemen yukarıda <md-icon md-svg-icon="content:add_circle"></md-icon> tuşuna basarak İçin ekstra seçenekler ve içerik tanımları yapabilirsiniz</p>
+                </md-content>
+                <div ng-if="ctrl.$Entity.FoodProperties.length">
+                    <md-list>
+                        <md-list-item class="menuPropertyItem" ng-repeat="fProperty in ctrl.$Entity.FoodProperties">
+                            <div class="md-list-item-text md-no-style" ng-click="ctrl.editProperty(fProperty)" layout="row" layout-sm="column">
+                                <h3>{{fProperty.Name}}</h3>
+                                <span class="menuPropertyDescription">{{fProperty.Desc}}</span>
+                                <md-icon md-svg-icon="content:remove_circle" ng-click="ctrl.removeProperty(fProperty)" aria-label="Remove Property" class="md-secondary md-hue-3"></md-icon>
+                            </div>
+                            <md-divider ng-if="!$last"></md-divider>
+                        </md-list-item>
+                    </md-list>
+                </div>
+            </div>
+            <div class="md-actions" layout="row" layout-align="space-between center">
+                <md-button class="md-raised md-primary" type="submit">Kaydet</md-button>
+                <md-button type="button" ng-click="ctrl.historyBack()">Geri Dön</md-button>
+            </div>
+        </form>
+    </md-content>
+</section>
+<section class="md-whiteframe-z2 doc-content" ng-if="ctrl.editingProperty">
+    <md-content  class="md-padding">
+        <h3 class="md-title">{{ctrl.$Entity.Name? ctrl.$Entity.Name : 'Yiyecek'}}  için özellik tanımlama</h3>
+    </md-content>
+    <md-content class="md-padding">
+        <form name="propertyEditor" novalidate ng-submit="propertyEditor.$valid && ctrl.saveProperty()">
+            <div layout="row" layout-sm="column">
+                <md-input-container flex>
+                    <label>Özellik Adı</label>
+                    <input name="propertyName" ng-model="ctrl.editingProperty.Name" required />
+                    <span ng-messages="propertyEditor.propertyName.$error" role="alert" ng-if="propertyEditor.propertyName.$touched || propertyEditor.$submitted">
+                        <span ng-messages-include="src/UI/ErrorMessages.html"></span>
+                    </span>
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Kısa açıklaması</label>
+                    <input name="desc" ng-model="ctrl.editingProperty.Desc" ng-maxlength="255" />
+                    <span ng-messages="propertyEditor.desc.$error" role="alert" ng-if="propertyEditor.desc.$touched || propertyEditor.$submitted">
+                        <span ng-messages-include="src/UI/ErrorMessages.html"></span>
+                    </span>
+                </md-input-container>
+            </div>
+
+            <div layout="row" layout-sm="column">
+                <md-input-container flex>
+                    <label>Fiyata Etkisi</label>
+                    <md-select name="priceType" placeholder="Fiyata Etkisi" ng-model="ctrl.editingProperty.PriceType" required>
+                        <md-option ng-value="key" ng-repeat="(key, value) in ctrl.priceTypes()">{{value}}</md-option>
+                    </md-select>
+                    <span ng-messages="propertyEditor.priceType.$error" role="alert" ng-if="propertyEditor.priceType.$touched || propertyEditor.$submitted">
+                        <span ng-messages-include="src/UI/ErrorMessages.html"></span>
+                    </span>
+                </md-input-container>
+                <span flex="5"></span>
+                <md-input-container flex>
+                    <md-checkbox class="md-primary" ng-model="ctrl.editingProperty.Required" aria-label="Save Daylight">
+                        Seçim Zorunlu Mu?
+                    </md-checkbox>
+                </md-input-container>
+            </div>
+
+            <div layout="row" layout-sm="column">
+                <md-input-container flex>
+                    <label>Seçim Tipi</label>
+                    <md-select name="selectionType" placeholder="Seçim Tipi" ng-model="ctrl.editingProperty.SelectionType" required>
+                        <md-option ng-value="key" ng-repeat="(key, value) in ctrl.propertySelectionTypes()">{{value}}</md-option>
+                    </md-select>
+                    <span ng-messages="propertyEditor.selectionType.$error" role="alert" ng-if="propertyEditor.selectionType.$touched || propertyEditor.$submitted">
+                        <span ng-messages-include="src/UI/ErrorMessages.html"></span>
+                    </span>
+                </md-input-container>
+                <md-input-container flex ng-if="ctrl.editingProperty.SelectionType == ctrl.MultipleLimitedSelType()">
+                    <label>Seçim Sayı Limiti</label>
+                    <input name="limit" type="number" ng-model="ctrl.editingProperty.ItemSelectionLimit" ng-required="ctrl.editingProperty.SelectionType == ctrl.MultipleLimitedSelType()" />
+                    <span ng-messages="propertyEditor.limit.$error" role="alert" ng-if="propertyEditor.limit.$touched || propertyEditor.$submitted">
+                        <span ng-messages-include="src/UI/ErrorMessages.html"></span>
+                    </span>
+                </md-input-container>
+            </div>
+            <div layout="row" layout-sm="column">
+                <md-input-container flex>
+                    <label>Gösterim Sırası</label>
+                    <input type="number" ng-model="ctrl.editingPropertyItem.DisplayOrder" />
+                </md-input-container>
+
+                <md-input-container flex>
+                    <md-checkbox class="md-primary" ng-model="ctrl.editingProperty.ShowTitleToUser">
+                        Başlığı Kullanıcıya Göster
+                    </md-checkbox>
+                </md-input-container>
+
+                <md-input-container flex>
+                    <md-checkbox class="md-primary" ng-model="ctrl.editingProperty.DisplayInMenu">
+                        Menüde Göster
+                    </md-checkbox>
+                </md-input-container>
+            </div>
+
+            <div class="md-whiteframe-z2">
+                <md-toolbar class="innerToolbarHeader">
+                    <div class="md-toolbar-tools header48">
+                        <span>Özellik İçeriği</span>
+                        <span flex></span>
+                        <md-button type="button" ng-click="ctrl.newPropertyItem(ctrl.editingProperty)" aria-label="Ekle">
+                            <md-icon md-svg-icon="content:add_circle"></md-icon>
+                            <span> New</span>
+                            <md-tooltip>
+                                <b>Yeni Bir Özellik İçeriği Oluşturun </b>
+                            </md-tooltip>
+                        </md-button>
+                    </div>
+                </md-toolbar>
+                <md-content ng-if="!ctrl.editingProperty.FoodPropertyItems.length" layout-padding>
+                    <h4 md-headline>Bu bölümde henüz hiç bir tanım gözükmüyor.</h4>
+                    <p md-subhead>Hemen yukarıda <md-icon md-svg-icon="content:add_circle"></md-icon> tuşuna basarak özellik içeriği tanımı yapabilirsiniz.</p>
+                </md-content>
+                <div ng-if="ctrl.editingProperty.FoodPropertyItems.length">
+                    <md-list>
+                        <md-list-item class="foodPropertyItems" ng-repeat="fPropItem in ctrl.editingProperty.FoodPropertyItems">
+                            <div class="md-list-item-text md-no-style" ng-click="ctrl.editPropertyItem(fPropItem)" layout="row" layout-sm="column">
+                                <h3>{{fPropItem.Name}}</h3>
+                                <span class="menuPropertyDescription">{{fPropItem.Desc}}</span>
+                                <md-icon md-svg-icon="content:remove_circle" ng-click="ctrl.removePropertyItem(fPropItem)" aria-label="Remove Property Item" class="md-secondary md-hue-3"></md-icon>
+                            </div>
+                            <md-divider ng-if="!$last"></md-divider>
+                        </md-list-item>
+                    </md-list>
+                </div>
+            </div>
+
+            <div class="md-actions" layout="row" layout-align="space-between center">
+                <md-button class="md-raised md-primary" type="submit">Tamam</md-button>
+                <md-button type="button" ng-click="ctrl.backToFoodEdit()">Geri Dön</md-button>
+            </div>
+        </form>
+    </md-content>
+</section>

@@ -1,0 +1,152 @@
+﻿<ion-view view-title="{{ctrl.$state.current.data.title  || 'MobiResta'}}">
+    <ion-content padding="false">
+        <div class="page-slider-container" ng-if="ctrl.HeaderImages.length">
+            <ion-slide-box show-pager="{{ ctrl.HeaderImages.length > 1 }}" ng-if="ctrl.HeaderImages.length" class="page-slider" delegate-handle="image-viewer">
+                <ion-slide ng-repeat="slide in ctrl.HeaderImages track by slide.Id">
+                    <div ng-style="{'background-image': 'url(' + slide.Url + '?height=284)'}" class="slider-image row row-bottom slider-title-container">
+                        <div class="col">
+                            <h3 class="">{{slide.Title}}</h3>
+                            <h4 class="">{{slide.Desc}}</h4>
+                        </div>
+
+                    </div>
+                </ion-slide>
+            </ion-slide-box>
+        </div>
+
+        <div class="list wrap-list card food-container">
+            <div class="item item-stable row padding food-header">
+                <div class="col">
+                    <h2>{{ ctrl.Item.Name }}</h2>
+                </div>
+                <div class="col-center padding-right">
+                    <span money="ctrl.TotalPrice()" currency="ctrl.Item.Currency"></span>
+                </div>
+            </div>
+
+            <div class="item">
+                <p ng-if="!ctrl.Item.RichDesc && ctrl.Item.Desc">
+                    {{::ctrl.Item.Desc}}
+                </p>
+                <div class="user-content no-padding" ng-if="ctrl.Item.RichDesc" ng-bind-html="ctrl.Item.RichDesc">
+                </div>
+
+                <div class="tags text-right padding-top" ng-if="ctrl.Item.Tags.length">
+                    <button class="button button-small button-calm button-clear" ng-repeat="tag in ctrl.Item.Tags">{{tag.Name}}</button>
+                </div>
+
+                <p class="padding-bottom padding-top">
+                    <a href="#" class="subdued">1 Like</a>
+                    <a href="#" class="subdued">5 Comments</a>
+                </p>
+            </div>
+
+            <div class="item tabs tabs-secondary tabs-icon-left">
+                <a class="tab-item" href="#">
+                    <i class="icon ion-thumbsup"></i>
+                    Like
+                </a>
+                <a class="tab-item" href="#">
+                    <i class="icon ion-chatbox"></i>
+                    Comment
+                </a>
+                <a class="tab-item" href="#">
+                    <i class="icon ion-share"></i>
+                    Share
+                </a>
+            </div>
+        </div>
+
+
+        <div class="card" ng-repeat="group in ctrl.Item.Items">
+            <div ng-if="group.ShowTitleToUser" class="item item-divider border-bottom">
+                <h2> {{ group.Name }}</h2>
+                <p ng-if="group.Desc">{{ group.Desc }}</p>
+            </div>
+            <div class="list wrap-list">
+                <ion-radio ng-change="ctrl.updateSingle(group, item)" name="{{group.PriceType == ctrl.PriceTypes.Net ? 'net': group.Id }}" ng-if="group.SelectionType == ctrl.SelectionTypes.Single"
+                           ng-model="group.SingleSelectedItem" ng-value="item.Id" ng-repeat="item in group.SubItems">
+                    <div class="row no-padding">
+                        <div class="col no-padding">
+                            <h2>{{ item.Name }}</h2>
+                            <p>{{ item.Desc }}</p>
+                        </div>
+                        <div ng-if="item.Price > 0" class="col-top padding-left">
+                            <span money="item.Price" currency="ctrl.Item.Currency"></span>
+                        </div>
+                    </div>
+                </ion-radio>
+
+                <ion-checkbox ng-change="ctrl.updateMultiple(group, item)" ng-if="group.SelectionType != ctrl.SelectionTypes.Single"
+                              ng-model="item.IsSelected" ng-checked="item.IsSelected" ng-repeat="item in group.SubItems">
+                    <div class="row no-padding">
+                        <div class="col no-padding">
+                            <h2>{{ item.Name }}</h2>
+                            <p>{{ item.Desc }}</p>
+                        </div>
+                        <div ng-if="item.Price > 0" class="col-top padding-left">
+                            <span money="item.Price" currency="ctrl.Item.Currency"></span>
+                        </div>
+                    </div>
+                </ion-checkbox>
+
+            </div>
+        </div>
+
+
+        <div class="card wrap-list" ng-if="ctrl.Item.Videos.length">
+            <div class="item  item-divider">Watch Videos</div>
+            <a class="item item-thumbnail-left" ng-if="ctrl.Item.Videos.length" ui-sref="app.videoplayer({Id: '{{ item.Id  }}'})"
+               ng-repeat="item in ctrl.Item.Videos">
+                <img ng-src="{{ctrl.videoThumbnail(item.Url) }}">
+                <h2>{{ item.Title }}</h2>
+                <p>{{ item.Desc }}</p>
+            </a>
+        </div>
+        <div class="card">
+            <div class="item item-divider item-positive">
+                Order this item
+            </div>
+            <div class="list">
+                <form class="item" name="orderForm" novalidate ng-submit="orderForm.$valid && ctrl.AddToShopCard()">
+
+                    
+                    <label class="item-input">
+                        <span class="input-label">Amount</span>
+                        <input ng-model="ctrl.CurrentCard.Amount" min="1" max="25" required type="text" placeholder="{{ctrl.CurrentCard.Amount}}">
+                    </label>
+
+
+                    <div class="padding">
+                        <button type="submit" class="col button-block button button-positive">{{ ctrl.editId ? 'Update Item': 'Add To Order List' }}</button>
+                    </div>
+                    <div class="padding" ng-if="ctrl.editId">
+                        <button type="button" ng-click="ctrl.removeItem()" class="col button-block button button-assertive">
+                            <i class="icon ion-android-delete"></i> Remove
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+
+
+           
+
+        </div>
+
+    </ion-content>
+
+    <!--<ion-footer-bar align-title="left" class="bar-positive">
+        <div class="buttons">
+            <button class="button">Left Button</button>
+            <button class="button">Left Button</button>
+        </div>
+        <h1 class="title">Title!</h1>
+        <div class="buttons" ng-click="doSomething()">
+            <button class="button">Right Button</button>
+        </div>
+    </ion-footer-bar>-->
+
+
+
+</ion-view>

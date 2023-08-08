@@ -1,0 +1,49 @@
+﻿<md-dialog flex="75">
+    <form name="form" novalidate ng-submit="form.$valid && ctrl.save()">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>{{ctrl.$Id ? 'Düzenle': 'Ekle'}}</h2>
+                <span flex></span>
+                <md-button type="button" class="md-icon-button" ng-click="ctrl.CloseDialog()">
+                    <md-icon md-svg-src="content:clear" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <section ng-if="ctrl.$Entity.Attachments.length" class="pageImages dialog">
+            <ul rn-carousel rn-carousel-index="carouselIndex2" rn-carousel-transition="zoom" rn-carousel-auto-slide rn-carousel-pause-on-hover rn-carousel-buffered>
+                <li ng-repeat="slide in ctrl.$Entity.Attachments track by slide.Id">
+                    <div ng-style="{'background-image': 'url(/attach/' + slide.Id + '___' + slide.FileName + ')'}" class="bgimage">
+
+                    </div>
+                </li>
+            </ul>
+        </section>
+        <md-dialog-content>
+            <div layout="row" layout-sm="column">
+                <md-input-container flex>
+                    <label>Kısım, Ör Izgaralar</label>
+                    <input ng-model="ctrl.$Entity.Name" required />
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Sırası</label>
+                    <input type="number" ng-model="ctrl.$Entity.DisplayOrder" />
+                </md-input-container>
+            </div>
+            <div layout="row" layout-sm="column">
+                <md-input-container flex>
+                    <label>Kısa açıklaması</label>
+                    <input ng-model="ctrl.$Entity.Desc" />
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+
+        <div class="md-actions" layout="row">
+            <md-button class="md-primary" type="submit">Save</md-button>
+            <span flex></span>
+            <md-button type="button" ng-click="ctrl.CloseDialog()">Cancel</md-button>
+        </div>
+
+    </form>
+
+
+</md-dialog>

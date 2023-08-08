@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-controller="AppController as app" ng-strict-di>
+  
+  <head>
+    <meta name="viewport" content="initial-scale=1" />
+    <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css">
+    <link media="all" rel="stylesheet" type="text/css" href="./bower_components/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="./css/app.css">
+    <link rel="stylesheet" href="./css/docs.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
+    <title ng-bind="'mobiresta - ' + (app.sitemap.currentSection.label || app.sitemap.currentSection.name) +
+    (app.sitemap.currentSection === app.sitemap.currentPage ? '' : ' > ' + (app.sitemap.currentPage.label || app.sitemap.currentPage.name))">MobiResta</title>
+  </head>
+  
+  <body layout="row" ng-cloak>
+    <md-sidenav ui-view="sidenav" class="site-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
+    </md-sidenav>
+      
+      <div layout="column" tabindex="-1" role="main" flex>
+          <md-toolbar ui-view="toolbar" class="md-whiteframe-glow-z1 site-content-toolbar">
+              
+          </md-toolbar>
+          
+          <md-content ui-view="page" md-scroll-y flex layout-padding>
+
+
+          </md-content>
+
+          <md-sidenav ng-if="app.account.principal.isAuthenticated" class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
+              <md-toolbar class="md-theme-light">
+                  <h1 class="md-toolbar-tools">Sidenav Right</h1>
+              </md-toolbar>
+              <md-content layout-padding>
+                  <form>
+                      <md-input-container>
+                          <label for="testInput">Test input</label>
+                          <input type="text" id="testInput" ng-model="data" md-sidenav-focus>
+                      </md-input-container>
+                  </form>
+                  <md-button ng-click="app.closeSidenav('right')" class="md-primary">Close Sidenav Right</md-button>
+              </md-content>
+          </md-sidenav>
+      </div>
+
+    <script src="./bower_components/angular/angular.js"></script>
+    <script src="./bower_components/angular-aria/angular-aria.js"></script>
+    <script src="./bower_components/angular-animate/angular-animate.js"></script>
+    <script src="./bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="./bower_components/angular-material/angular-material.js"></script>
+    <script src="./bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script type="text/javascript" src="./js/bundle.js"></script>
+    <script>
+      // Include app dependency on ngMaterial
+    </script>
+  </body>
+
+</html>

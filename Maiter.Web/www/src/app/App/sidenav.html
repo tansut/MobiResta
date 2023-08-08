@@ -1,0 +1,28 @@
+﻿
+    <header class="nav-header">
+        <a ng-href="#/" class="docs-logo">
+            <img src="img/mr-logo.svg" alt="" />
+            <h1 class="docs-logotype md-heading">Mobil Restaurant</h1>
+
+        </a>
+    </header>
+    <ul class="skip-links">
+        <li class="md-whiteframe-z2">
+            <md-button ng-click="app.focusMainContent($event)" href="#">Skip to content</md-button>
+        </li>
+    </ul>
+    <md-content flex role="navigation">
+        <ul class="docs-menu">
+            <li refresh-on="UserLoggedIn" ng-repeat="section in app.menuSections" class="parent-list-item {{section.className || ''}}" ng-class="{'parentActive' : app.isSectionSelected(section)}">
+                <h2 class="menu-heading md-subhead" ng-if="::section.type === 'heading'" id="heading_{{ section.name | nospace }}">{{:: section.label || section.name}}</h2>
+                <menu-link section="::section" ng-if="::section.type === 'link'"></menu-link>
+                <menu-toggle section="::section" ng-if="::section.type === 'toggle'"></menu-toggle>
+                <ul ng-if="::section.children" class="menu-nested-list">
+                    <li ng-repeat="child in ::section.children" ng-class="{'childActive' : app.isSectionSelected(child)}">
+                        <menu-link section="::child" ng-if="::child.type === 'link'"></menu-link>
+                        <menu-toggle section="::child" ng-if="::child.type === 'toggle'"></menu-toggle>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </md-content>

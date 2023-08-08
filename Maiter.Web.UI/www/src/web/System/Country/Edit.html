@@ -1,0 +1,33 @@
+﻿<section ng-if="ctrl.$Entity.Name" class="doc-content">
+    <md-content>
+        <h2 md-headline>{{ctrl.$Entity.Name}}</h2>
+      
+    </md-content>
+</section>
+
+<section ng-if="ctrl.$Ready" class="md-whiteframe-z1 doc-content">
+   
+    <md-content layout-padding>
+        <form name="form" novalidate ng-submit="form.$valid && ctrl.save()">
+            <div layout="row" layout-sm="column" layout-padding>
+                <md-input-container flex>
+                    <label>Ülke Adı</label>
+                    <input ng-model="ctrl.$Entity.Name" required />
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Yerel Adı</label>
+                    <input ng-model="ctrl.$Entity.NativeName" required />
+                </md-input-container>
+            </div>
+
+
+            <div class="md-actions" layout="row" layout-align="space-between center">
+                <md-button class="md-primary" type="submit">Kaydet</md-button>
+                <span flex></span>
+                <md-button type="button" ng-click="ctrl.historyBack()">Geri Dön</md-button>
+            </div>
+        </form>
+
+    </md-content>
+
+</section>

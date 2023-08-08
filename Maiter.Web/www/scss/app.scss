@@ -1,0 +1,20 @@
+@import "css3-mixins" ;
+
+$bar-color: #387EF5;
+$formHeader-bg: #106CC8;
+$invalidBorder : 1px dashed red;
+
+
+md-toolbar[formHeader] {
+  // @include background-gradient(darken($formHeader-bg, 0%), lighten($formHeader-bg, 10%));
+  // color: #fff !important;
+}
+
+md-card[message] {
+  // background-color: rgb(250, 255, 189);
+}
+
+md-toolbar .md-button md-icon {
+  color: #fff;
+  font-size: 2.0em;
+}

@@ -1,0 +1,67 @@
+﻿<section ng-if="ctrl.$Ready" class="md-whiteframe-z1 doc-content">
+    <md-content class="md-padding">
+        <form name="form" novalidate ng-submit="form.$valid && ctrl.save()">
+            <!--<div layout-padding  class="hint mention-bg" layout="row" layout-margin>
+
+                <md-icon big md-svg-icon="action:face"></md-icon>
+
+                <span flex>
+                    Lütfen unutmayın; Restaurant temel bilgilerini sadece bir kez değiştirebilirsiniz. Kaydetmeden önce herşeyin doğru olduğunu tekrar kontrol edin.
+                </span>
+            </div>-->
+
+            <div layout="row" layout-sm="column">
+                <md-input-container  flex>
+                    <label>Menü adı. Ör: Yemek Menüsü</label>
+                    <input ng-model="ctrl.$Entity.Name" required />
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Kısa açıklaması</label>
+                    <input ng-model="ctrl.$Entity.Desc" />
+                </md-input-container>
+
+            </div>
+
+            <div layout="row" layout-sm="column">
+            
+                    <md-autocomplete flex
+                                     md-selected-item="ctrl.selectedLanguage"
+                                     md-search-text="ctrl.languageSearch"
+                                     md-items="item in ctrl.queryLanguage(ctrl.languageSearch)"
+                                     md-item-text="item.Name + ' - ' + item.NativeName"
+                                     md-min-length="0"
+                                     placeholder="Menü Dili" ,
+                                     md-input-name="menucurrency"
+                                     md-autoselect="false"
+                                     md-floating-label="Menü dili">
+                        <md-item-template>
+                            <span md-highlight-text="ctrl.languageSearch" md-highlight-flags="^i">{{item.Name}} - {{item.NativeName}}</span>
+                        </md-item-template>
+                    </md-autocomplete>
+        
+                    <md-input-container flex>
+                        <label>Menü Gösterimi</label>
+                        <md-select name="languageOption" placeholder="Menü gösterimi" ng-model="ctrl.$Entity.DisplayOption" required>
+                            <md-option ng-value="key" ng-repeat="(key, value) in ctrl.DisplayOptions()">{{value}}</md-option>
+                        </md-select>
+                    </md-input-container>
+                <md-input-container>
+                    <label>Sırası</label>
+                    <input type="number" ng-model="ctrl.$Entity.DisplayOrder" />
+                </md-input-container>
+</div>
+            <div class="md-actions" layout="row" layout-align="space-between center">
+                <md-button class="md-raised md-primary" type="submit">Save</md-button>
+                <md-button type="button" ng-click="ctrl.historyBack()">Geri Dön</md-button>
+            </div>
+        </form>
+
+
+
+
+
+
+
+    </md-content>
+
+</section>

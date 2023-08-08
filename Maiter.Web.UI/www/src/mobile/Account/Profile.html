@@ -1,0 +1,78 @@
+﻿<ion-view cache-view="false" hide-back-button="true" view-title="{{ctrl.$state.current.data.title | translate }}">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+    </ion-nav-buttons>
+    <ion-content id="Profile">
+        <div class="bar header bar-positive">
+            <div class="title">Profile</div>
+        </div>
+
+        <div class="item"></div>
+
+
+        <form name="form" ng-submit="form.$valid  && ctrl.update()">
+            <div class="avatar-section">
+                <div class="content">
+                    <div class="item avatar-icon">
+                        <img ng-src="http://10.10.1.112:6971/attach/{{ctrl.profileModel.ProfilePictureAttachmentInfo.Id}}___{{ctrl.profileModel.ProfilePictureAttachmentInfo.FileName}}?width=200" class="avatar-img" />
+                        <br></br>
+                        <span class="">{{ctrl.profileModel.Name +" "+ ctrl.profileModel.Surname}} </span>
+                    </div>
+                </div>
+            </div>
+            <div id="profilList" class="list">
+                <label class="item-input item-stacked-label">
+                    <span class="input-label">E-mail</span>
+                    <input type="text" ng-model="ctrl.profileModel.Email" disabled placeholder="Email Address">
+                </label>
+                <label class="item-input item-stacked-label">
+                    <span class="input-label">Name</span>
+                    <input type="text" ng-model="ctrl.profileModel.Name" placeholder="Name">
+                </label>
+
+                <label class="item-input item-stacked-label">
+                    <span class="input-label">Surname</span>
+                    <input type="text" ng-model="ctrl.profileModel.Surname" placeholder="Surnmae">
+                </label>
+
+                <label class="item-input item-stacked-label">
+                    <span class="input-label">Phone number</span>
+                    <input type="text" ng-model="ctrl.profileModel.Phone" placeholder="Some">
+                </label>
+
+                <div style="padding: 16px">
+                    <span>Gender</span>
+                    <div style="">
+                        <input type="radio" name="group" ng-model="ctrl.profileModel.Gender" value="1" ng-checked="ctrl.profileModel.Gender==1?true:false">Male
+                        <input type="radio" name="group" ng-model="ctrl.profileModel.Gender" value="0" ng-checked="ctrl.profileModel.Gender==0?true:false">Female
+                    </div>
+                </div>
+
+                <!--<label class="item-input">
+                    <span class="input-label">Date of Birth</span>
+                    <input type="date" />
+
+                </label>-->
+
+                <label class="item-input item-select">
+                    <div class="input-label">
+                        Language
+                    </div>
+                    <select ng-change="ctrl.changeLanguage()" ng-model="ctrl.lan" ng-options="key as value for (key,value) in ::ctrl.Languages" ng-selected="ctrl.lan === ctrl.Translate.Catalog.currentLanguage"></select>
+                </label>
+            </div>
+            <!--{{ctrl.Languages[ctrl.Translate.Catalog.currentLanguage]}} -- {{ctrl.Translate.Catalog.currentLanguage}}
+            <div class="list">
+                 <label ng-click="ctrl.changeLanguage(key)" class="item item-radio" ng-repeat="(key,value) in ::ctrl.Languages">
+                     <input type="radio" name="group">
+                     <div class="item-content">
+                         {{value}}
+                     </div>
+                     <i class="radio-icon ion-checkmark"></i>
+                 </label>
+             </div>-->
+
+            <button type="submit" class="button button-block button-positive">SAVE</button>
+        </form>
+    </ion-content>
+</ion-view>

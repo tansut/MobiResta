@@ -1,0 +1,28 @@
+﻿<div class="md-toolbar-tools docs-toolbar-tools" ng-click="app.openSidenav()" tabindex="-1">
+    <md-button class="md-icon-button" hide-gt-sm aria-label="Toggle Menu">
+        <md-icon class="mdi mdi-menu"></md-icon>
+    </md-button>
+    <div layout="row" flex class="fill-height">
+        <h2 class="md-toolbar-item md-breadcrumb md-headline">
+            <span ng-if="app.sitemap.currentPage.name !== app.sitemap.currentSection.name">
+                <span hide-sm hide-md>{{app.sitemap.currentSection.label || app.sitemap.currentSection.name}}</span>
+                <span class="docs-menu-separator-icon" hide-sm hide-md style="transform: translate3d(0, 1px, 0)">
+                    <span class="md-visually-hidden">-</span>
+                    <md-icon aria-hidden="true" class="mdi mdi-chevron-right"></md-icon>
+                </span>
+            </span>
+            <span class="md-breadcrumb-page">{{app.sitemap.currentPage.label || app.sitemap.currentPage.name }}</span>
+        </h2>
+        <span flex></span>
+        <div ng-if="app.account.principal.isAuthenticated" class="md-toolbar-item docs-tools" layout="row">
+            <md-button class="md-icon-button" ng-click="app.openSidenav('right')">
+                <md-icon class="mdi mdi-account-check"></md-icon>
+            </md-button>
+        </div>
+        <div ng-if="!app.account.principal.isAuthenticated" class="md-toolbar-item docs-tools" layout="row">
+            <md-button ui-sref="account-login" class="md-icon-button" aria-label="İşletme Girişi">
+                <md-icon class="mdi mdi-account-key"></md-icon>
+            </md-button>
+        </div>
+    </div>
+</div>

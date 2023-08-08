@@ -1,0 +1,19 @@
+﻿<ion-view view-title="{{ctrl.$state.current.data.title | translate }}">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+    </ion-nav-buttons>
+    <ion-content class="padding">
+        <div class="list">
+            
+        </div>
+            
+            <div class="list">
+
+                <div ng-click="ctrl.changeLanguage(key)" ng-repeat="(key,value) in ::ctrl.Languages">
+
+                    <ion-radio ng-model="ctrl.Translate.Catalog.currentLanguage" ng-value="key">{{value}}</ion-radio>
+
+                </div>
+            </div>
+</ion-content>
+</ion-view>

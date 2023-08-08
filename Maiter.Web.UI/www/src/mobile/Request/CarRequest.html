@@ -1,0 +1,26 @@
+<ion-view view-title="{{ctrl.requestMeta.title}}">
+  <ion-content class="page-content" padding="false">
+    <form ng-submit="ctrl.go()">
+      <div class="card">
+        <div class="item item-divider">Aracınıza hızlı ulaşmam için renk, marka, plaka</div>
+        <label class="item item-input">
+          <input ng-model="ctrl.request.carInfo" type="text" placeholder="ör. beyaz, bmw, 06 TT 749">
+        </label>
+      </div>
+      <div class="card">
+        <div class="item item-divider">Araç hazır olduğunda size haber vermemizi ister misiniz?</div>
+        <ion-checkbox ng-model="ctrl.request.notifyMe" ng-true-value="'yes'">Evet</ion-checkbox>
+        <ion-checkbox ng-model="ctrl.request.notifyMe" ng-true-value="'no'">Hayır</ion-checkbox>
+      </div>
+      <div class="card">
+        <div class="item item-divider">Ayrıca iletmek istediğiniz notunuz var mı?</div>
+        <label class="item item-input">
+          <input ng-model="ctrl.request.requestNote" type="text" placeholder="Varsa kısaca yazın">
+        </label>
+      </div>
+      <div class="padding">
+        <button type="submit" class="button button-positive icon-right ion-chevron-right">{{ctrl.requestMeta.title}}</button>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0B499FA4-AC6D-4190-9781-85AB03D6CF8F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Maiter.Shared</RootNamespace>
+    <AssemblyName>Maiter.Shared</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TypeLite, Version=1.3.0.0, Culture=neutral, PublicKeyToken=8cd4b9c9ac23d744, processorArchitecture=MSIL">
+      <HintPath>..\packages\TypeLite.1.3.0\lib\net4\TypeLite.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TypeLite.Net4, Version=1.3.0.0, Culture=neutral, PublicKeyToken=8cd4b9c9ac23d744, processorArchitecture=MSIL">
+      <HintPath>..\packages\TypeLite.1.3.0\lib\net4\TypeLite.Net4.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attributes\UpdatableAttribute.cs" />
+    <Compile Include="Data\Address.cs" />
+    <Compile Include="Data\CreatedResponse.cs" />
+    <Compile Include="Data\GeoPoint.cs" />
+    <Compile Include="Entity\ApplicationUser.cs" />
+    <Compile Include="Entity\Attachment.cs" />
+    <Compile Include="Entity\City.cs" />
+    <Compile Include="Entity\Client.cs" />
+    <Compile Include="Entity\Company.cs" />
+    <Compile Include="Entity\CompanyAppMenuItem.cs" />
+    <Compile Include="Entity\CompanyCustomerRequest.cs" />
+    <Compile Include="Entity\Country.cs" />
+    <Compile Include="Entity\CustomerRequest.cs" />
+    <Compile Include="Entity\EntityBase.cs" />
+    <Compile Include="Entity\EntityInfo.cs" />
+    <Compile Include="Entity\Food.cs" />
+    <Compile Include="Entity\Globalization.cs" />
+    <Compile Include="Entity\Interfaces.cs" />
+    <Compile Include="Entity\Menu.cs" />
+    <Compile Include="Entity\NameValue.cs" />
+    <Compile Include="Entity\RefreshToken.cs" />
+    <Compile Include="Entity\CompanyMenu.cs" />
+    <Compile Include="Entity\Request.cs" />
+    <Compile Include="Entity\ResTable.cs" />
+    <Compile Include="Entity\CompanyUser.cs" />
+    <Compile Include="Entity\CountryState.cs" />
+    <Compile Include="Entity\Tag.cs" />
+    <Compile Include="Operation\AjaxExceptionResult.cs" />
+    <Compile Include="Resource\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resource\Resource.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.en.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Util\ClientArray.cs" />
+    <Compile Include="Util\Cryptography.cs" />
+    <Compile Include="Util\Geography.cs" />
+    <Compile Include="Util\GlobalizationHelper.cs" />
+    <Compile Include="Util\IdGenerator.cs" />
+    <Compile Include="Operation\CodedOperationResult.cs" />
+    <Compile Include="Operation\SimpleOperationResult.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\Authentication.cs" />
+    <Compile Include="Security\Claims.cs" />
+    <Compile Include="Security\EntitySecurityStamp.cs" />
+    <Compile Include="Util\ShortGuid.cs" />
+    <Compile Include="Util\TableSelectionParser.cs" />
+    <Compile Include="Util\WebHelper.cs" />
+    <Compile Include="ViewModels\Account\ExternalLoginModels.cs" />
+    <Compile Include="ViewModels\Account\FacebookAuthUserInfoResult.cs" />
+    <Compile Include="ViewModels\Account\ForgotPasswordRequestModel.cs" />
+    <Compile Include="ViewModels\Account\MailTemplateModels\ForgotPasswordViewModel.cs" />
+    <Compile Include="ViewModels\Account\MailTemplateModels\RegisterTemplateViewModel.cs" />
+    <Compile Include="ViewModels\Account\MaiterLoginResult.cs" />
+    <Compile Include="ViewModels\Account\RegisterModel.cs" />
+    <Compile Include="Entity\Responsibility.cs" />
+    <Compile Include="ViewModels\Account\UserProfile.cs" />
+    <Compile Include="ViewModels\Common\GlobalContent.cs" />
+    <Compile Include="ViewModels\Common\TagContent.cs" />
+    <Compile Include="ViewModels\Common\UserType.cs" />
+    <Compile Include="ViewModels\Company\CompanyAppMenuItemViewModel.cs" />
+    <Compile Include="ViewModels\Company\ServiceKind.cs" />
+    <Compile Include="ViewModels\Company\TableGeneration.cs" />
+    <Compile Include="ViewModels\Company\WorkItemStatus.cs" />
+    <Compile Include="ViewModels\Messaging\AckMessages.cs" />
+    <Compile Include="ViewModels\Messaging\ClientMessage.cs" />
+    <Compile Include="ViewModels\Messaging\Message.cs" />
+    <Compile Include="ViewModels\Messaging\MessageFactory.cs" />
+    <Compile Include="ViewModels\Mobile\Common.cs" />
+    <Compile Include="ViewModels\Mobile\Menu.cs" />
+    <Compile Include="ViewModels\Mobile\RequestType.cs" />
+    <Compile Include="ViewModels\Mobile\RequestTypes\BaseClasses.cs" />
+    <Compile Include="ViewModels\Mobile\RequestTypes\CheckInRequest.cs" />
+    <Compile Include="ViewModels\Mobile\RequestTypes\Common.cs" />
+    <Compile Include="ViewModels\Mobile\RequestTypes\ChatRequest.cs" />
+    <Compile Include="ViewModels\Mobile\RequestTypes\CustomRequest.cs" />
+    <Compile Include="ViewModels\Mobile\RequestTypes\CallRequest.cs" />
+    <Compile Include="ViewModels\Mobile\RequestTypes\PayRequest.cs" />
+    <Compile Include="ViewModels\Mobile\RequestTypes\RequestFactory.cs" />
+    <Compile Include="ViewModels\Mobile\RequestTypes\RequestTypeFactory.cs" />
+    <Compile Include="ViewModels\Mobile\RequestTypes\Customer.cs" />
+    <Compile Include="ViewModels\Mobile\SessionRequest.cs" />
+    <Compile Include="ViewModels\Mobile\ShoppingCard.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resource\Resource.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>$(SolutionDir)Maiter.TsGenerator\bin\Debug\Maiter.TsGenerator.exe $(TargetPath) $(SolutionDir)Maiter.Web.UI\www\src\Data\Models.ts</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

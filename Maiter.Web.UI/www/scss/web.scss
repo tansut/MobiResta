@@ -1,0 +1,351 @@
+@import "css3-mixins";.rowdisabledbackground{.rowdisabledbackground{
+    background-color:#DDD;
+} 
+    background-color:#DDD;
+} 
+
+$bar-color: #387EF5;
+$formHeader-bg: #106CC8;
+$invalidBorder: 1px dashed red;
+
+$gray: "";
+$light-gray: #f6f6f6;
+$invalidBorderColor: rgb(244,67,54);
+
+
+.sized {
+    max-width: 864px;
+}
+
+
+#loading-bar {
+    .bar {
+        background: #333;
+        height: 4px;
+    }
+}
+
+#loading-bar-spinner {
+    display: none;
+}
+
+.site-sidenav {
+    background: #106CC8;
+}
+
+.site-sidenav md-content {
+    background: transparent;
+}
+
+.site-sidenav,
+.site-sidenav.md-locked-open-add-active,
+.site-sidenav.md-locked-open {
+    width: 256px;
+    min-width: 256px;
+    max-width: 256px;
+}
+
+.site-sidenav > * {
+    min-width: 218px;
+}
+
+
+md-icon[big] {
+    width: 48px !important;
+    height: 48px !important;
+}
+
+md-icon[info] {
+    color: #f6f6f6 !important;
+}
+
+.hint {
+    md-icon {
+        color: #a7a2a2 !important;
+    }
+}
+
+.mention-bg {
+    background-color: $light-gray !important;
+}
+
+md-icon[average] {
+    width: 40px !important;
+    height: 40px !important;
+}
+
+md-icon[list] {
+    width: 48px !important;
+    height: 48px !important;
+}
+
+
+md-icon[color-done], .color-done {
+    color: #4ee66d !important;
+}
+
+md-icon[color-todo], .color-todo {
+    color: red !important;
+}
+
+#company-actions {
+    md-card {
+        min-width: 250px;
+
+        md-card-content {
+            span {
+                height: 108px;
+                text-overflow: ellipsis;
+                overflow: visible;
+            }
+        }
+    }
+}
+
+
+body.ready {
+    #appBody {
+        opacity: 1;
+    }
+
+    #loading {
+        display: none;
+    }
+}
+
+body {
+    #appBody {
+        opacity: 0;
+        height: 100%;
+        @include transition (opacity 0.5s ease-in);
+    }
+
+    #loading {
+        height: 100%;
+        width: 100%;
+    }
+
+    #appFooter {
+        height: 24px;
+        font-size: 12px;
+        line-height: 24px;
+        background-color: #F6F6F6;
+        color: #989898;
+        display: none;
+    }
+}
+
+.spinner {
+    width: 90px;
+    height: 90px;
+    background-color: #106CC8;
+    color: #fff;
+    padding: 10px;
+    -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
+    animation: sk-rotateplane 1.2s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-rotateplane {
+    0% {
+        -webkit-transform: perspective(120px);
+    }
+
+    50% {
+        -webkit-transform: perspective(120px) rotateY(180deg);
+    }
+
+    100% {
+        -webkit-transform: perspective(120px) rotateY(180deg) rotateX(180deg);
+    }
+}
+
+@keyframes sk-rotateplane {
+    0% {
+        transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+        -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    }
+
+    50% {
+        transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+        -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    }
+
+    100% {
+        transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+        -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    }
+}
+
+.md-inline-list-icon-label {
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: -10px;
+    height: 24px;
+    vertical-align: middle;
+}
+
+.md-grid-item-content {
+    height: 96px;
+}
+
+.md-grid-item-content md-icon {
+    height: 48px;
+    width: 48px;
+}
+
+.md-grid-text {
+    padding-bottom: 5px;
+}
+
+.ta-editor {
+    min-height: 200px;
+    height: auto;
+    overflow: auto;
+    font-family: inherit;
+    font-size: 100%;
+}
+
+.drop-box {
+    background: #F8F8F8;
+    border: 5px dashed #DDD;
+    height: 125px;
+    text-align: center;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.dragover {
+    border: 5px dashed blue;
+}
+
+md-toolbar {
+    background-color: #185694;
+}
+
+md-list-item {
+    .md-button {
+        text-align: inherit;
+    }
+}
+
+.tag {
+    padding: 8px;
+    background-color: #F6F6F6 !important;
+    color: #666 !important;
+    border-radius: 8px;
+    display: block;
+    height: 32px;
+    line-height: 32px;
+    margin: 8px 8px 0 0;
+    padding: 0 8px 0 8px;
+    font-size: 13px;
+    @include box-shadow(1px, 1px, 1px, darken(#F6F6F6, 25%))
+}
+
+span[tag^=':'] {
+    background-color: darken(#F6F6F6, 10%) !important;
+}
+
+.md-avatar:first-child {
+    width: 80px !important;
+    height: auto !important;
+    border-radius: 5% !important;
+}
+
+.simulated h3 {
+    color: #F00 !important;
+}
+
+.md-list-item-text {
+    h3, h2, p, h4 {
+        line-height: initial !important;
+    }
+}
+
+.pageImages.dialog {
+    ul {
+        height: 250px;
+    }
+}
+
+.pageImages {
+    ul {
+        height: 350px;
+        margin: 0 auto;
+    }
+
+    .bgimage {
+        background-size: cover;
+        height: 100%;
+        background-position: center center;
+
+        .caption {
+        }
+    }
+}
+
+.itemThumnails {
+    ul {
+        height: 99px;
+        width: 132px;
+    }
+
+    .bgimage {
+        background-size: cover;
+        height: 100%;
+        background-position: center center;
+
+        .caption {
+        }
+    }
+
+    img {
+        height: auto;
+    }
+
+    margin-top: 16px;
+    margin-bottom: 16px;
+    margin-right: 16px;
+}
+
+.doc-content {
+    margin: 16px 16px 16px 16px;
+}
+
+md-list {
+    padding: 0px !important;
+}
+
+form.ng-submitted {
+    .ng-pristine.ng-invalid {
+        border-color: $invalidBorderColor;
+    }
+}
+
+.menuPropertyItem, .foodPropertyItems {
+    .menuPropertyDescription, .foodPropertyItemDescription {
+        margin-left: 30px;
+    }
+}
+
+md-toolbar.innerToolbarHeader {
+    min-height: 25px;
+    .md-toolbar-tools{
+        font-size: large;
+        height: 32px;
+    }
+    .md-toolbar-tools.header48 {
+        height: 48px;
+    }
+
+     .md-toolbar-tools.header32 {
+        height: 32px;
+    }
+}
+.rowdisabledbackground{
+    background-color:#DDD;
+} 
+

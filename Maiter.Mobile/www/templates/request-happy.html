@@ -1,0 +1,25 @@
+<ion-view view-title="{{ctrl.requestMeta.title}}">
+  <ion-content class="page-content" padding="false">
+    <form ng-submit="ctrl.go()">
+      <div class="card">
+        <div class="item item-divider">En çok hangi bölüm mutlu etti?</div>
+        <ion-checkbox ng-repeat="branch in ctrl.branchList" ng-model="ctrl.request.branchType" ng-true-value="{{branch.type | json}}">{{branch.title}}</ion-checkbox>
+      </div>
+      <div class="card">
+        <div class="item item-divider">Görüşleriniz</div>
+        <label class="item item-input">
+          <input ng-model="ctrl.request.requestNote" type="text" placeholder="Paylaşmak ister misiniz?">
+        </label>
+      </div>
+      <div class="card">
+        <div class="item item-divider">Size ulaşmamızı ister misiniz?</div>
+        <label class="item item-input">
+          <input ng-model="ctrl.request.contactInfo" type="text" placeholder="e-posta veya telefon numarası">
+        </label>
+      </div>
+      <div class="padding">
+        <button type="submit" class="button button-positive icon-left {{ctrl.requestMeta.iconClass}}">{{ctrl.requestMeta.title}}</button>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

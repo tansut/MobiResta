@@ -1,0 +1,89 @@
+﻿<md-dialog flex="75">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>{{ctrl.editingProperty.Id ? 'Düzenle': 'Ekle' }}</h2>
+            <span flex></span>
+            <md-button type="button" class="md-icon-button" ng-click="ctrl.closeDialog()">
+                <md-icon md-svg-src="content:clear" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-content class="md-padding">
+        <form name="propertyEditor" novalidate ng-submit="propertyEditor.$valid && ctrl.saveProperty()">
+            <div layout="row" layout-sm="column">
+                <md-input-container flex>
+                    <label>Özellik Adı</label>
+                    <input name="propertyName" ng-model="ctrl.editingProperty.Name" required />
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Kısa açıklaması</label>
+                    <input name="desc" ng-model="ctrl.editingProperty.Desc" />
+                </md-input-container>
+            </div>
+
+            <div layout="row" layout-sm="column">
+                <md-input-container flex>
+                    <label>Fiyata Etkisi</label>
+                    <md-select name="priceType" placeholder="Fiyata Etkisi" ng-model="ctrl.editingProperty.PriceType" required>
+                        <md-option ng-value="key" ng-repeat="(key, value) in ctrl.priceTypes()">{{value}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container flex>
+                    <md-checkbox ng-model="ctrl.editingProperty.Required" aria-label="Save Daylight">
+                        Seçim Zorunlu Mu?
+                    </md-checkbox>
+                </md-input-container>
+            </div>
+
+            <div layout="row" layout-sm="column">
+                <md-input-container flex>
+                    <label>Seçim Tipi</label>
+                    <md-select name="selectionType" placeholder="Seçim Tipi" ng-model="ctrl.editingProperty.SelectionType" required>
+                        <md-option ng-value="key" ng-repeat="(key, value) in ctrl.propertySelectionTypes()">{{value}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container flex ng-if="ctrl.editingProperty.SelectionType == ctrl.MultipleLimitedSelType()">
+                    <label>Seçim Sayı Limiti</label>
+                    <input type="number" ng-model="ctrl.editingProperty.ItemSelectionLimit" ng-required="ctrl.editingProperty.SelectionType == ctrl.MultipleLimitedSelType()" />
+                </md-input-container>
+            </div>
+
+            <div class="md-whiteframe-z2">
+                <md-toolbar class="innerToolbarHeader">
+                    <div class="md-toolbar-tools header32">
+                        <span>Özellik İçeriği</span>
+                        <span flex></span>
+                        <md-button type="button" ng-click="ctrl.newPropertyItem(ctrl.editingProperty)" aria-label="Ekle">
+                            <md-icon md-svg-icon="content:add_circle"></md-icon>
+                            <span> New</span>
+                            <md-tooltip>
+                                <b>Yeni Bir Özellik İçeriği Oluşturun </b>
+                            </md-tooltip>
+                        </md-button>
+                    </div>
+                </md-toolbar>
+                <md-content ng-if="!ctrl.editingProperty.FoodPropertyItems.length" layout-padding>
+                    <h4 md-headline>Bu bölümde henüz hiç bir tanım gözükmüyor.</h4>
+                    <p md-subhead>Hemen yukarıda <md-icon md-svg-icon="content:add_circle"></md-icon> tuşuna basarak özellik içeriği tanımı yapabilirsiniz.</p>
+                </md-content>
+                <div ng-if="ctrl.editingProperty.FoodPropertyItems.length">
+                    <md-list>
+                        <md-list-item class="foodPropertyItems" ng-click="ctrl.editPropertyItem(fPropItem)" ng-repeat="fPropItem in ctrl.editingProperty.FoodPropertyItems">
+                            <div class="md-list-item-text" layout="row" layout-sm="column">
+                                <h3>{{fPropItem.Name}}</h3>
+                                <span class="menuPropertyDescription">{{fPropItem.Desc}}</span>
+                                <md-icon md-svg-icon="content:remove_circle" ng-click="ctrl.removePropertyItem(fPropItem)" aria-label="Remove Property Item" class="md-secondary md-hue-3"></md-icon>
+                            </div>
+                            <md-divider ng-if="!$last"></md-divider>
+                        </md-list-item>
+                    </md-list>
+                </div>
+            </div>
+
+            <div class="md-actions" layout="row" layout-align="space-between center">
+                <md-button class="md-raised md-primary" type="submit">Uygula</md-button>
+                <md-button type="button" ng-click="ctrl.closeDialog()">Kapat</md-button>
+            </div>
+        </form>
+    </md-content>
+</md-dialog>

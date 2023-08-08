@@ -1,0 +1,12 @@
+<ion-view hide-back-button="true" view-title="Oku">
+    <ion-nav-buttons side="primary">
+      <a class="button icon-left ion-home" href="#/app">
+      </a>
+    </ion-nav-buttons>
+    <ion-content class="page-content" padding="true">
+
+       <button class="button button-block" ng-click='ctrl.sessionByQrCode()'> Oku</button>
+       <button class="button button-block" ng-click='ctrl.sessionByQrCode(true)'> Test</button>
+       {{ctrl.userMsg}}
+    </ion-content>
+</ion-view>
